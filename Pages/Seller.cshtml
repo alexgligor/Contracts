@@ -1,0 +1,79 @@
+﻿@page
+@addTagHelper*, Microsoft.AspNetCore.Mvc
+@model SellerlModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+
+<!-- Fereastra Modală -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span id="closeModal" class="close">&times;</span>
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <!-- Alte câmpuri din formă -->
+                    
+                    <video id="cameraFeed" autoplay></video>
+                    <canvas id="photoCanvas" style="display: none;"></canvas>
+                    <img id="capturedPhoto" src="" style="display: none;" />
+                    <button class="btn-primary" id="captureButton">Captură Foto</button>
+                    <form method="post">
+                        <input type="hidden" name="capturedImage" id="capturedImage" value="" />
+                        <button class="btn-primary" type="submit">Gata</button>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1 style="text-align:center;">Date vanzator</h1>
+            @*<button class="btn-primary" id="openModalButton">Scaneaza Buletin</button>*@
+            <form method="post">
+                <div class="form-group mb-3">
+                    <label for="lastName">Nume</label>
+                    <input asp-for="Person.LastName" class="form-control" id="lastName" placeholder="Ex: Popescu">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="firstName">Prenume</label>
+                    <input asp-for="Person.FirstName" class="form-control" id="firstName" placeholder="Ex: Andrei">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="personalIdentificationNumber">CNP</label>
+                    <input asp-for="Person.PersonalIdentificationNumber" class="form-control" id="personalIdentificationNumber" placeholder="Ex: 1893454685467">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="serialCharacters">Seria</label>
+                    <input asp-for="Person.SerialCharacters" class="form-control" id="serialCharacters" placeholder="Ex: TZ">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="serialNumber">Numar</label>
+                    <input asp-for="Person.SerialNumber" class="form-control" id="serialNumber" placeholder="Ex: 125347">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="email">Email</label>
+                    <input asp-for="Person.Email" class="form-control" id="email" placeholder="Ex: popescu.andrei@ymail.com">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="phone">Telefon</label>
+                    <input asp-for="Person.Phone" class="form-control" id="phone" placeholder="Ex: 0758965486">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="address">Adresa</label>
+                    <input asp-for="Person.Address" class="form-control" id="address" placeholder="Ex: Jud.Timis, Ors.Timisoara Str. Roma, nr 57">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+</div>

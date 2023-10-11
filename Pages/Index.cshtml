@@ -1,0 +1,17 @@
+﻿@page
+@addTagHelper*, Microsoft.AspNetCore.Mvc
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+
+
+<div class="text-center">
+
+    <a href="@Url.Page("Index","DownloadFile")" download="Contract.pdf">
+        <button>Descarcă Document</button>
+    </a>
+</div>
+

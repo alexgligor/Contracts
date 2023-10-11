@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Contracte</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Contracts.styles.css" asp-append-version="true" />
+    <style>
+        /* Stiluri pentru fereastra modală */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        /* Stil pentru butonul care deschide fereastra modală */
+        #openModalButton {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">Contracte</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Seller">Contract Auto</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - Powered by Professor Prime
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+   @* <script>
+        // Obțineți elementele HTML
+        var openModalButton = document.getElementById("openModalButton");
+        var modal = document.getElementById("myModal");
+        var closeModal = document.getElementById("closeModal");
+
+        // Deschideți fereastra modală atunci când se apasă pe buton
+        openModalButton.addEventListener("click", function () {
+            modal.style.display = "block";
+        });
+
+        // Închideți fereastra modală atunci când se apasă pe butonul "×" sau în afara ferestrei
+        closeModal.addEventListener("click", function () {
+            modal.style.display = "none";
+        });
+
+        window.addEventListener("click", function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const captureButton = document.getElementById("captureButton");
+            const cameraFeed = document.getElementById("cameraFeed");
+            const photoCanvas = document.getElementById("photoCanvas");
+            const capturedPhoto = document.getElementById("capturedPhoto");
+
+            // Obține permisiunea pentru accesul la camera dispozitivului
+            navigator.mediaDevices
+                .getUserMedia({ video: true })
+                .then(function (stream) {
+                    cameraFeed.srcObject = stream;
+                })
+                .catch(function (error) {
+                    console.error("Eroare la accesarea camerei:", error);
+                });
+
+            // Ascultă evenimentul de clic pe butonul de capturare
+            captureButton.addEventListener("click", function () {
+                // Capturează imaginea din feed-ul camerei
+                const context = photoCanvas.getContext("2d");
+                context.drawImage(cameraFeed, 0, 0, photoCanvas.width, photoCanvas.height);
+
+                // Afișează imaginea capturată
+                capturedPhoto.src = photoCanvas.toDataURL("image/png");
+                capturedPhoto.style.display = "block";
+            });
+        });
+
+        document.querySelector('button[type="submit"]').addEventListener("click", function () {
+            const capturedPhoto = document.getElementById("capturedPhoto");
+            const capturedImageSrc = capturedPhoto.src;
+
+            document.getElementById("capturedImage").value = capturedImageSrc;
+        });*@
+
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

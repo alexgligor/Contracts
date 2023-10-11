@@ -1,0 +1,108 @@
+﻿@page
+@model Contracts.Pages.ContractModel
+@{
+    Layout = null; // Dezactivează utilizarea layout-ului HTML
+}
+<html>
+
+<head>
+    <title>Contract de vanzare-cumparare masina</title>
+    <style>
+
+        /* Stilurile pentru conținutul paginii */
+        body {
+            width: 210mm; /* Lățimea paginii A4 */
+            height: 297mm; /* Înălțimea paginii A4 */
+            margin: 0 auto; /* Centralizează conținutul pe pagină */
+            background-color: #fff; /* Culoarea de fundal a paginii */
+            padding: 20px; /* Adaugă un spațiu de margine în jurul conținutului */
+        }
+
+        /* Alte stiluri pentru conținutul paginii */
+   
+        .two, .three, .four, .five, .six {
+            border: 1px solid black;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .column {
+            display: inline-block;
+            width: 33%;
+            vertical-align: top;
+        }
+
+        .left-column {
+            text-align: left;
+        }
+
+        .center-column {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .right-column {
+            text-align: left;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="section one">
+        <div class="column left-column">
+            <p>Denumirea organului fiscal local de la domiciliul/sediul persoanei care înstrăinează</p>
+            <p>CIF/Cod SIRUTA</p>
+            <p>Adresa</p>
+            <p>Tel/fax/e-mail</p>
+            <p>REMTII1) Nr. …….....…../…………..20…</p>
+            <p>Rol nr.: ……………….…….</p>
+            <span style="margin-right: 20px">  Original</span>
+            <span>  Copie</span>
+        </div>
+        <div class="column center-column">
+            <p>Model 2016 ITL 054 - Anexa nr. 2</p>
+            <p>CONTRACT DE ÎNSTRĂINARE – DOBÂNDIRE A UNUI MIJLOC DE TRANSPORT</p>
+        </div>
+        <div class="column right-column">
+            <p>Denumirea organului fiscal local</p>
+            <p>Vânzătorul NU are debite la data de întâi a lunii următoare înregistrării actului de înstrăinare-dobândire <small style="font-style: italic;">(se completează și pe copii):</small></p>
+            <p>Prenumele …………………</p>
+            <p>Numele ……………………</p>
+            <p>Funcţia ……………………</p>
+            <p>LS.</p>
+        </div>
+    </div>
+    <div class="section two">
+        <p>
+            <b>(1) PERSOANA CARE ÎNSTRĂINEAZĂ</b> Subsemnatul(a)/Subscrisa cu domiciliul/sediul în ROMÂNIA/ ......................, judeţul ..............................., codul poştal ...................,  municipiul / oraşul/ comuna ............................................., satul/sectorul .................................., str. .................................................................................
+                    , nr. ......, bl. ......, sc. ......., et. ......, ap ......, identificat prin B.I./C.I./C.I.P./Paşaport seria ...... nr. ................, C.N.P./C.I.F4) ...................................................., tel./fax ................................, e-mail …………………….…………………, şi domiciliul fiscal în ROMÂNIA/ ....................., judeţul ........................................, codul postal………… municipiul / oraşul / comuna ........................................., satul/sectorul .................................., str. ................................. ................................, nr. ........, bl. .........., sc. ........, et. ......., ap .........., reprezentată prin..................................................................... identificat prin B.I./C.I./C.I.P./Paşaport seria ….... nr. .............., C.I.F .........................................., tel./fax........................................, e-mail …...........................................…, în calitate de ....................................................................................
+        </p>
+    </div>
+    <div class="section three">
+        <p>
+            <b>(2) PERSOANA CARE DOBÂNDEŞTE</b> Subsemnatul(a)/Subscrisa <b>@Model.Person.LastName @Model.Person.FirstName</b> cu domiciliul/sediul în ROMÂNIA/ <b>@Model.Person.Address </b>, codul poştal ...................,  identificat prin B.I./C.I./C.I.P./Paşaport seria <b>@Model.Person.SerialCharacters</b> nr. <b>@Model.Person.SerialNumber</b>, C.N.P./C.I.F4) <b>@Model.Person.PersonalIdentificationNumber</b>, tel. <b>@Model.Person.Phone</b>, e-mail <b>@Model.Person.Email</b>, şi domiciliul fiscal în ROMÂNIA.
+            în calitate de <b>proprietar</b>.
+        </p>
+    </div>
+    <div class="section four">
+        <p style="font-weight: bold">(3) OBIECTUL CONTRACTULUI</p>
+        <p>Mijlocul de transport: marca ………………………….. tipul ……………., număr de identificare …….............................................serie motor ……….............. capacitatea cilindrică …….... cm³, greutate maximă admisă (pentru remorci / semiremorci) …….… tone, număr de înmatriculare/înregistrare ……...........….…, data la care expiră inspecţia tehnică periodică ……………………….,numărul cărţii de identitate a vehiculului …………….., anul de fabricaţie ........................., norma euro ......... dobândit la data de......................................, conform act ………………………….……...........……………………….</p>
+    </div>
+    <div class="section five">
+        <p><b>(4) PREŢUL</b> în cifre ………………........… lei , în litere ……………………………………………….</p>
+    </div>
+    <div class="section six">
+        <p> <b>(5)</b> Persoana care înstrăinează menţionată la punctul (1) declară ca mijlocul de transport este proprietatea sa, liber de orice sarcini.</p>
+        <small>
+            De asemenea, declară ca a predat persoanei care dobândeşte menţionat la punctul (2) vehiculul, cheile, certificatul de înmatriculare şi cartea de identitate a vehiculului, primind de la acesta preţul prevăzut la punctul (4).<br>
+            Persoana care dobândeşte menţionată la punctul (2) declară ca a primit de la vânzătorul menţionat la punctul (1) mijlocului de transport, cheile, certificatul de înmatriculare şi cartea de identitate a vehiculului, achitând persoanei care înstrăinează preţul menţionat la punctul (4).<br>
+            Anexe la contract:  Da  Nu  <br>
+            Atât persoana care înstrăinează, cât şi dobânditorul declară, cunoscând prevederile Codului penal privind falsul şi uzul de fals că toate informaţiile înscrise în prezentul document corespund realităţii. <br>
+            Începând cu data semnării, dobânditorul are calitatea de proprietar de drept şi de fapt asupra mijlocului de transport ce face obiectul prezentului contract de înstrăinare-dobândire, preluând toate obligaţiile prevăzute de lege, inclusiv cele legate de transcrierea vehiculului pe numele sau, <b>în maxim 30 de zile, de la data încheierii prezentului act</b>.
+        </small>
+        <p style="font-weight:bold"> Data şi locul încheierii contractului ……………………………. / ……………………………………………..</p>
+        <p style="font-weight:bold"> Semnătura persoanei care înstrăinează …………………………………………… Semnătura persoanei care dobândeşte ……………………………………………</p>
+    </div>
+</body>
+</html>
