@@ -7,6 +7,9 @@ namespace Contracts.Pages
 {
     public class FinancialInfoModel : PageModel
     {
+        [BindProperty]
+        public int Stage { get; set; } = 4;
+
         private readonly ILogger<IndexModel> _logger;
 
         private Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnvironment;
@@ -31,6 +34,13 @@ namespace Contracts.Pages
        
         public IActionResult OnPost()
         {
+            if (!ModelState.IsValid)
+            {
+                // If ModelState is not valid, redisplay the form with validation errors
+                return Page();
+            }
+
+
             TempData["FInfo"] = JsonConvert.SerializeObject(FInfo);
             return Redirect("/Contract");
         }

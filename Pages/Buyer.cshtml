@@ -5,42 +5,154 @@
     ViewData["Title"] = "Home page";
 }
 
+<style>
+    .containerT {
+        border-top: 4px solid #1693cc;
+        display: flex;
+        list-style: none;
+        padding: 0;
+        justify-content: space-between;
+        align-items: stretch;
+        align-content: stretch;
+    }
+
+    .link {
+        position: relative;
+        margin-top: 10px;
+        width: 100%;
+    }
+
+        .link a {
+            font-weight: bold;
+            text-decoration: none;
+            color: #1693cc;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        .link:first-child {
+            margin-left: -55px;
+        }
+
+        .link:last-child {
+            margin-right: -55px;
+        }
+
+        .link::after {
+            content: "";
+            width: 30px;
+            height: 30px;
+            background: #fff;
+            position: absolute;
+            border-radius: 20px;
+            top: -28px;
+            left: 50%;
+            transform: translatex(-50%);
+            border: 4px solid #1693cc;
+        }
+
+        .active::after,
+        .link:hover::after {
+            background: #1693cc;
+        }
+</style>
+<div style="text-align: center;font-family: sans-serif;width: 500px;margin: 1px auto;">
+    <h3>Completarea Datelor</h3>
+    <br />
+    <ul class="containerT">
+        @if (Model.Stage == 1)
+        {
+            <li class="link active"><a href="">Vanzator</a></li>
+        }
+        else
+        {
+            <li class="link"><a href="">Vanzator</a></li>
+        }
+
+        @if (Model.Stage == 2)
+        {
+            <li class="link active"><a href="">Cumparator</a></li>
+        }
+        else
+        {
+            <li class="link"><a href="">Cumparator</a></li>
+        }
+
+        @if (Model.Stage == 3)
+        {
+            <li class="link active"><a href="">Masina</a></li>
+        }
+        else
+        {
+            <li class="link"><a href="">Masina</a></li>
+        }
+
+        @if (Model.Stage == 4)
+        {
+            <li class="link active"><a href="">Oferta</a></li>
+        }
+        else
+        {
+            <li class="link"><a href="">Oferta</a></li>
+        }
+
+        @if (Model.Stage == 5)
+        {
+            <li class="link active"><a href="">Terminat</a></li>
+        }
+        else
+        {
+            <li class="link"><a href="">Terminat</a></li>
+        }
+
+    </ul>
+</div>
+
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <h1 style="text-align:center;">Date cumparator</h1>
             <form method="post">
                 <div class="form-group mb-3">
                     <label for="lastName">Nume</label>
                     <input asp-for="Person.LastName" class="form-control" id="lastName" placeholder="Ex: Popescu">
+                    <span asp-validation-for="Person.LastName" class="text-danger"></span>
                 </div>
                 <div class="form-group mb-3">
                     <label for="firstName">Prenume</label>
                     <input asp-for="Person.FirstName" class="form-control" id="firstName" placeholder="Ex: Andrei">
+                    <span asp-validation-for="Person.FirstName" class="text-danger"></span>
                 </div>
                 <div class="form-group mb-3">
                     <label for="personalIdentificationNumber">CNP</label>
                     <input asp-for="Person.PersonalIdentificationNumber" class="form-control" id="personalIdentificationNumber" placeholder="Ex: 1893454685467">
+                    <span asp-validation-for="Person.PersonalIdentificationNumber" class="text-danger"></span>
                 </div>
                 <div class="form-group mb-3">
                     <label for="serialCharacters">Seria</label>
                     <input asp-for="Person.SerialCharacters" class="form-control" id="serialCharacters" placeholder="Ex: TZ">
+                    <span asp-validation-for="Person.SerialCharacters" class="text-danger"></span>
                 </div>
                 <div class="form-group mb-3">
                     <label for="serialNumber">Numar</label>
                     <input asp-for="Person.SerialNumber" class="form-control" id="serialNumber" placeholder="Ex: 125347">
+                    <span asp-validation-for="Person.SerialNumber" class="text-danger"></span>
                 </div>
                 <div class="form-group mb-3">
                     <label for="email">Email</label>
                     <input asp-for="Person.Email" class="form-control" id="email" placeholder="Ex: popescu.andrei@ymail.com">
+
+                    <span asp-validation-for="Person.Email" class="text-danger"></span>
                 </div>
                 <div class="form-group mb-3">
                     <label for="phone">Telefon</label>
                     <input asp-for="Person.Phone" class="form-control" id="phone" placeholder="Ex: 0758965486">
+                    <span asp-validation-for="Person.Phone" class="text-danger"></span>
+
                 </div>
                 <div class="form-group mb-3">
                     <label for="address">Adresa</label>
                     <input asp-for="Person.Address" class="form-control" id="address" placeholder="Ex: Jud.Timis, Ors.Timisoara Str. Roma, nr 57">
+                    <span asp-validation-for="Person.Address" class="text-danger"></span>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Save</button>

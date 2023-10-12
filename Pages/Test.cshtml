@@ -1,0 +1,113 @@
+﻿@page
+@model Contracts.Pages.TestModel
+@{
+}
+
+<style>
+    .containerT {
+        border-top: 1px solid #000;
+        display: flex;
+        list-style: none;
+        padding: 0;
+        justify-content: space-between;
+        align-items: stretch;
+        align-content: stretch;
+    }
+
+    .link {
+        position: relative;
+        margin-top: 10px;
+        width: 100%;
+    }
+
+        .link a {
+            font-weight: bold;
+            text-decoration: none;
+            color: black;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        .link:first-child {
+            margin-left: -55px;
+        }
+
+        .link:last-child {
+            margin-right: -55px;
+        }
+
+        .link::after {
+            content: "";
+            width: 15px;
+            height: 15px;
+            background: #fff;
+            position: absolute;
+            border-radius: 20px;
+            top: -18px;
+            left: 50%;
+            transform: translatex(-50%);
+            border: 2px solid black;
+        }
+
+        .active::after,
+        .link:hover::after {
+            background: black;
+        }
+
+    p.lead {
+        font-weight: 600;
+        margin: 50px auto;
+        line-height: 1.5;
+    }
+</style>
+<div style=" padding: 50px; text-align: center;font-family: sans-serif;width: 500px;margin: 1px auto;">
+    <h3>Completarea Datelor</h3>
+    <br/>
+    <ul class="containerT">
+        @if(Model.Stage == 1)
+        {
+            <li class="link active"><a href="">Vanzator</a></li>
+        }
+        else
+        {
+            <li class="link"><a href="">Vanzator</a></li>
+        }
+
+        @if (Model.Stage == 2)
+        {
+            <li class="link active"><a href="">Cumparator</a></li>
+        }
+        else
+        {
+            <li class="link"><a href="">Cumparator</a></li>
+        }
+
+        @if (Model.Stage == 3)
+        {
+            <li class="link active"><a href="">Masina</a></li>
+        }
+        else
+        {
+            <li class="link"><a href="">Masina</a></li>
+        }
+
+        @if (Model.Stage == 4)
+        {
+            <li class="link active"><a href="">Oferta</a></li>
+        }
+        else
+        {
+            <li class="link"><a href="">Oferta</a></li>
+        }
+
+        @if (Model.Stage == 5)
+        {
+            <li class="link active"><a href="">Terminat</a></li>
+        }
+        else
+        {
+            <li class="link"><a href="">Terminat</a></li>
+        }
+
+    </ul>
+</div>

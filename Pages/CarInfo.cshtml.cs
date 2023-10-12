@@ -7,6 +7,9 @@ namespace Contracts.Pages
 {
     public class CarInfoModel : PageModel
     {
+        [BindProperty]
+        public int Stage { get; set; } = 3;
+
         private readonly ILogger<IndexModel> _logger;
 
         private Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnvironment;
@@ -31,6 +34,12 @@ namespace Contracts.Pages
        
         public IActionResult OnPost()
         {
+            if (!ModelState.IsValid)
+            {
+                // If ModelState is not valid, redisplay the form with validation errors
+                return Page();
+            }
+
             TempData["CarInfo"] = JsonConvert.SerializeObject(Car);
             return Redirect("/FinancialInfo");
         }

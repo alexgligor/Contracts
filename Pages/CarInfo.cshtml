@@ -5,51 +5,167 @@
     ViewData["Title"] = "Home page";
 }
 
+<style>
+    .containerT {
+        border-top: 4px solid #1693cc;
+        display: flex;
+        list-style: none;
+        padding: 0;
+        justify-content: space-between;
+        align-items: stretch;
+        align-content: stretch;
+    }
+
+    .link {
+        position: relative;
+        margin-top: 10px;
+        width: 100%;
+    }
+
+        .link a {
+            font-weight: bold;
+            text-decoration: none;
+            color: #1693cc;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        .link:first-child {
+            margin-left: -55px;
+        }
+
+        .link:last-child {
+            margin-right: -55px;
+        }
+
+        .link::after {
+            content: "";
+            width: 30px;
+            height: 30px;
+            background: #fff;
+            position: absolute;
+            border-radius: 20px;
+            top: -28px;
+            left: 50%;
+            transform: translatex(-50%);
+            border: 4px solid #1693cc;
+        }
+
+        .active::after,
+        .link:hover::after {
+            background: #1693cc;
+        }
+</style>
+<div style="text-align: center;font-family: sans-serif;width: 500px;margin: 1px auto;">
+
+    <h3>Completarea Datelor</h3>
+    <br />
+    <ul class="containerT">
+        @if (Model.Stage == 1)
+        {
+            <li class="link active"><a href="">Vanzator</a></li>
+        }
+        else
+        {
+            <li class="link"><a href="">Vanzator</a></li>
+        }
+
+        @if (Model.Stage == 2)
+        {
+            <li class="link active"><a href="">Cumparator</a></li>
+        }
+        else
+        {
+            <li class="link"><a href="">Cumparator</a></li>
+        }
+
+        @if (Model.Stage == 3)
+        {
+            <li class="link active"><a href="">Masina</a></li>
+        }
+        else
+        {
+            <li class="link"><a href="">Masina</a></li>
+        }
+
+        @if (Model.Stage == 4)
+        {
+            <li class="link active"><a href="">Oferta</a></li>
+        }
+        else
+        {
+            <li class="link"><a href="">Oferta</a></li>
+        }
+
+        @if (Model.Stage == 5)
+        {
+            <li class="link active"><a href="">Terminat</a></li>
+        }
+        else
+        {
+            <li class="link"><a href="">Terminat</a></li>
+        }
+
+    </ul>
+</div>
+
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <h1 style="text-align:center;">Date masina</h1>
-
             <form method="post">
                 <div class="form-group mb-3">
                     <label for="name">Nume</label>
                     <input asp-for="Car.Name" class="form-control" id="name" placeholder="BMW">
+                    <span asp-validation-for="Car.Name" class="text-danger"></span>
+
                 </div>
                 <div class="form-group mb-3">
                     <label for="model">Model</label>
                     <input asp-for="Car.Model" class="form-control" id="model" placeholder="X5">
+                    <span asp-validation-for="Car.Model" class="text-danger"></span>
+
                 </div>
                 <div class="form-group mb-3">
                     <label for="vin">VIN</label>
                     <input asp-for="Car.VIN" class="form-control" id="vin" placeholder="SDF456DD567786">
+                    <span asp-validation-for="Car.VIN" class="text-danger"></span>
+
                 </div>
                 <div class="form-group mb-3">
                     <label for="engineSN">Număr motor</label>
                     <input asp-for="Car.EngineSN" class="form-control" id="engineSN" placeholder="1234RF5">
+                    <span asp-validation-for="Car.EngineSN" class="text-danger"></span>
+
                 </div>
                 <div class="form-group mb-3">
                     <label for="engineCCM">Capacitate motor (CCM)</label>
                     <input asp-for="Car.EngineCCM" class="form-control" id="engineCCM" placeholder="2200">
+                    <span asp-validation-for="Car.EngineSN" class="text-danger"></span>
+
                 </div>
                 <div class="form-group mb-3">
                     <label for="weight">Greutate</label>
                     <input asp-for="Car.Weight" class="form-control" id="weight" placeholder="1890">
+                    <span asp-validation-for="Car.Weight" class="text-danger"></span>
+
                 </div>
                 <div class="form-group mb-3">
                     <label for="fabricationYear">An de fabricație</label>
                     <input asp-for="Car.FabricationYear" class="form-control" id="fabricationYear" placeholder="2020">
+                    <span asp-validation-for="Car.FabricationYear" class="text-danger"></span>
+
                 </div>
                 <div class="form-group mb-3">
                     <label for="euroPolutionNorm">Normă de poluare Euro</label>
-                        <select asp-for="Car.EuroPolutionNorm" class="form-control" id="euroPolutionNorm">
-                        <option value="EURO 7">EURO 7</option>
-                        <option value="EURO 6">EURO 6</option>
-                        <option value="EURO 5" selected>EURO 5</option>
-                        <option value="EURO 4">EURO 4</option>
-                        <option value="EURO 3">EURO 3</option>
-                        <option value="EURO 2">EURO 2</option>
-                        <option value="EURO 1">EURO 1</option>
-                        <option value="NAN">NAN</option>
+                    <select asp-for="Car.EuroPolutionNorm" class="form-control" id="euroPolutionNorm">
+                        <option value="7">EURO 7</option>
+                        <option value="6">EURO 6</option>
+                        <option value="5" selected>EURO 5</option>
+                        <option value="4">EURO 4</option>
+                        <option value="3">EURO 3</option>
+                        <option value="2">EURO 2</option>
+                        <option value="1">EURO 1</option>
+                        <option value="0">NAN</option>
                     </select>
                 </div>
 

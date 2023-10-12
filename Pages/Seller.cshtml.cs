@@ -8,6 +8,9 @@ namespace Contracts.Pages
 {
     public class SellerlModel : PageModel
     {
+        [BindProperty]
+        public int Stage { get; set; } = 1;
+
         private readonly ILogger<IndexModel> _logger;
 
         private Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnvironment;
@@ -32,6 +35,12 @@ namespace Contracts.Pages
        
         public IActionResult OnPost()
         {
+            if (!ModelState.IsValid)
+            {
+                // If ModelState is not valid, redisplay the form with validation errors
+                return Page();
+            }
+
             TempData["Seller"] = JsonConvert.SerializeObject(Person);
             return Redirect("/Buyer");
         }
