@@ -3,7 +3,7 @@
 @{
     Layout = null; // Dezactivează utilizarea layout-ului HTML
 }
-<html>
+<html id="ooop">
 
 <head>
     <title>Contract de vanzare-cumparare masina</title>
@@ -80,10 +80,10 @@
         </p>
     </div>
     <div class="section three">
-        <p>
+        @*<p>
             <b>(2) PERSOANA CARE DOBÂNDEŞTE</b> Subsemnatul(a)/Subscrisa <b>@Model.Person.LastName @Model.Person.FirstName</b> cu domiciliul/sediul în ROMÂNIA/ <b>@Model.Person.Address </b>, codul poştal ...................,  identificat prin B.I./C.I./C.I.P./Paşaport seria <b>@Model.Person.SerialCharacters</b> nr. <b>@Model.Person.SerialNumber</b>, C.N.P./C.I.F4) <b>@Model.Person.PersonalIdentificationNumber</b>, tel. <b>@Model.Person.Phone</b>, e-mail <b>@Model.Person.Email</b>, şi domiciliul fiscal în ROMÂNIA.
             în calitate de <b>proprietar</b>.
-        </p>
+        </p>*@
     </div>
     <div class="section four">
         <p style="font-weight: bold">(3) OBIECTUL CONTRACTULUI</p>
@@ -106,3 +106,28 @@
     </div>
 </body>
 </html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
+<script>
+    // Selectează elementul HTML pe care dorești să-l converti în PDF
+    const element = document.getElementById("ooop");
+
+// Definește opțiunile pentru conversia PDF
+const options = {
+  margin: 10,
+  filename: 'pagina.pdf',
+  image: { type: 'jpeg', quality: 0.98 },
+  html2canvas: { scale: 2 },
+  jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+};
+
+// Folosește html2pdf pentru a face conversia
+html2pdf()
+  .from(element)
+  .set(options)
+  .outputPdf(pdf => {
+    // Poți salva PDF-ul sau afișa într-un iframe sau deschide într-o nouă fereastră
+    pdf.output('datauristring'); // Deschide PDF într-o nouă fereastră
+  });
+
+</script>

@@ -60,6 +60,9 @@
         line-height: 1.5;
     }
 </style>
+<h1>Transformă pagina HTML în imagine</h1>
+<button id="convertButton">Convertă în imagine</button>
+<div id="convert">
 <div style=" padding: 50px; text-align: center;font-family: sans-serif;width: 500px;margin: 1px auto;">
     <h3>Completarea Datelor</h3>
     <br/>
@@ -111,3 +114,52 @@
 
     </ul>
 </div>
+</div>
+
+ <script>
+    // Asigură-te că se execută codul JavaScript după încărcarea paginii
+    document.addEventListener("DOMContentLoaded", function () {
+        // Selectează butonul
+        var convertButton = document.getElementById("convertButton");
+
+        // Atașează un eveniment de click butonului
+        convertButton.addEventListener("click", function () {
+            // Creează o variabilă care să stocheze imaginea
+            var image = new Image();
+
+            // Configurează dimensiunile imaginii
+            image.width = window.innerWidth;
+            image.height = window.innerHeight;
+
+            // Capturează pagina într-un canvas
+            var canvas = document.createElement("canvas");
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            var context = canvas.getContext("2d");
+
+            // Desenează pagina pe canvas
+            html2canvas(document.body).then(function (canvas) {
+                // Transformă canvas într-o imagine
+                image.src = canvas.toDataURL("image/png");
+
+                // Adaugă imaginea la corpul paginii sau poți face altceva cu ea
+                document.body.appendChild(image);
+
+
+            });
+
+             // Adaugă imaginea la corpul paginii sau poți face altceva cu ea
+    document.body.appendChild(image);
+
+    // Creează un element de link pentru descărcare
+    var downloadLink = document.createElement("a");
+    downloadLink.href = image.src;
+    downloadLink.download = "pagina.png"; // Numele fișierului pentru descărcare
+    downloadLink.innerHTML = "Descarcă imaginea";
+
+    // Adaugă linkul de descărcare la corpul paginii
+    document.body.appendChild(downloadLink);
+        });
+    });
+
+ </script>
