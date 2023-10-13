@@ -40,7 +40,7 @@ namespace Contracts.Pages
                 return Page();
             }
 
-            TempData["CarInfo"] = JsonConvert.SerializeObject(Car);
+            TempData["Car"] = JsonConvert.SerializeObject(Car);
             return Redirect("/FinancialInfo");
         }
     }

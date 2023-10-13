@@ -41,7 +41,7 @@ namespace Contracts.Pages
             }
 
 
-            TempData["FInfo"] = JsonConvert.SerializeObject(FInfo);
+            TempData["FinancialInfo"] = JsonConvert.SerializeObject(FInfo);
             return Redirect("/Contract");
         }
     }

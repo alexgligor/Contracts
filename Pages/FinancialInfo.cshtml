@@ -195,6 +195,26 @@
     var context = canvas.getContext('2d');
     var isDrawing = false;
 
+    canvas.addEventListener('touchstart', function (e) {
+        e.preventDefault();
+        isDrawing = true;
+        var touch = e.touches[0];
+        context.beginPath();
+        context.moveTo(touch.clientX - canvas.getBoundingClientRect().left, touch.clientY - canvas.getBoundingClientRect().top);
+    });
+
+    canvas.addEventListener('touchmove', function (e) {
+        e.preventDefault();
+        if (!isDrawing) return;
+        var touch = e.touches[0];
+        context.lineTo(touch.clientX - canvas.getBoundingClientRect().left, touch.clientY - canvas.getBoundingClientRect().top);
+        context.stroke();
+    });
+
+    canvas.addEventListener('touchend', function () {
+        isDrawing = false;
+    });
+
     canvas.addEventListener('mousedown', function (e) {
         isDrawing = true;
         context.beginPath();
@@ -226,6 +246,28 @@
     var capturedImage2 = document.getElementById('capturedImage2');
     var context2 = canvas2.getContext('2d');
     var isDrawing2 = false;
+
+    canvas2.addEventListener('touchstart', function (e) {
+        isDrawing2 = true;
+        e.preventDefault(); // Previne comportamentul implicit (scrolare și zoom)
+
+        var touch = e.touches[0];
+        context2.beginPath();
+        context2.moveTo(touch.clientX - canvas2.getBoundingClientRect().left, touch.clientY - canvas2.getBoundingClientRect().top);
+    });
+
+    canvas2.addEventListener('touchmove', function (e) {
+        e.preventDefault(); // Previne comportamentul implicit (scrolare și zoom)
+
+        if (!isDrawing2) return;
+        var touch = e.touches[0];
+        context2.lineTo(touch.clientX - canvas2.getBoundingClientRect().left, touch.clientY - canvas2.getBoundingClientRect().top);
+        context2.stroke();
+    });
+
+    canvas2.addEventListener('touchend', function () {
+        isDrawing2 = false;
+    });
 
     canvas2.addEventListener('mousedown', function (e) {
         isDrawing = true;
