@@ -3,43 +3,157 @@
 @{
     Layout = null;
 }
-<html lang="en" dir="ltr">
+<html>
 <head>
-    <meta charset="utf-8">
-    <title>Convert HTML To Image</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js">
-    </script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> 	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" ></script>
+
+ 
+
+	<script>
+	$(document).ready(function($) 
+	{ 
+
+		$(document).on('click', '.btn_print', function(event) 
+		{
+			console.log("start converting")
+			event.preventDefault();
+
+			//credit : https://ekoopmans.github.io/html2pdf.js
+			
+			var element = document.getElementById('container_content'); 
+
+			//easy
+			//html2pdf().from(element).save();
+
+			//custom file name
+			//html2pdf().set({filename: 'contract_'+js.AutoCode()+'.pdf'}).from(element).save();
+
+
+			////more custom settings
+			var opt = 
+			{
+			  margin:       0,
+			  filename:     'pageContent.pdf',
+			  image:        { type: 'jpeg', quality: 0.98 },
+			  html2canvas:  { scale: 2 },
+			  jsPDF:        { unit: 'in', format: 'A4', orientation: 'portrait' }
+			};
+
+			//// New Promise-based usage:
+			html2pdf().set(opt).from(element).save();
+
+			 
+		});
+
+ 
+ 
+	});
+	</script>
+
+	 
+
 </head>
+<body>
 
-<body onload="autoClick();">
+<div class="text-center" style="padding:20px;">
+	<input type="button" id="rep" value="Print" class="btn btn-info btn_print">
+</div>
 
-    <div id="htmlContent">
-        <h1>Hello World!</h1>
-    </div>
-    <a id="download">Download</a>
 
-    <script type="text/javascript">
-        function autoClick() {
-            $("#download").click();
-        }
+<div class="container_content" id="container_content" >
+		
 
-        $(document).ready(function () {
-            var element = $("#htmlContent");
+		<div class="invoice-box">
 
-            $("#download").on('click', function () {
+	
 
-                html2canvas(element, {
-                    onrendered: function (canvas) {
-                        var imageData = canvas.toDataURL("image/jpg");
-                        var newData = imageData.replace(/^data:image\/jpg/, "data:application/octet-stream");
-                        $("#download").attr("download", "image.jpg").attr("href", newData);
-                    }
-                });
+			<table cellpadding="0" cellspacing="0" >
+				<tr class="top">
+					<td colspan="2">
+						<table>
+							<tr>
+								<td class="title">
+									<img src="<?php echo $app_url?>/any.png" style="width: 100%; max-width: 300px" />
+								</td>
 
-            });
-        });
-    </script>
+								<td>
+									Invoice #: 123<br />
+									Created: January 1, 2015<br />
+									Due: February 1, 2015
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+				<tr class="information">
+					<td colspan="2">
+						<table>
+							<tr>
+								<td>
+									Sparksuite, Inc.<br />
+									12345 Sunny Road<br />
+									Sunnyville, CA 12345
+								</td>
+
+								<td>
+									Acme Corp.<br />
+									John Doe<br />
+									john@example.com
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+				<tr class="heading">
+					<td>Payment Method</td>
+
+					<td>Check #</td>
+				</tr>
+
+				<tr class="details">
+					<td>Check</td>
+
+					<td>1000</td>
+				</tr>
+
+				<tr class="heading">
+					<td>Item</td>
+
+					<td>Price</td>
+				</tr>
+
+				<tr class="item">
+					<td>Website design</td>
+
+					<td>$300.00</td>
+				</tr>
+
+				<tr class="item">
+					<td>Hosting (3 months)</td>
+
+					<td>$75.00</td>
+				</tr>
+
+				<tr class="item last">
+					<td>Domain name (1 year)</td>
+
+					<td>$10.00</td>
+				</tr>
+
+				<tr class="total">
+					<td></td>
+
+					<td>Total: $385.00</td>
+				</tr>
+			</table>
+		</div>
+</div>
+
+
+
 </body>
 </html>

@@ -66,15 +66,53 @@
             font-size: 10px;
         }
     </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js">
-    </script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> 	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" ></script>
+    <script>
+	$(document).ready(function($) 
+	{ 
+
+		$(document).on('click', '.btn_print', function(event) 
+		{
+			console.log("start converting")
+			event.preventDefault();
+            			
+			var element = document.getElementById('container_content'); 
+
+			//easy
+			//html2pdf().from(element).save();
+
+			//custom file name
+			//html2pdf().set({filename: 'contract_'+js.AutoCode()+'.pdf'}).from(element).save();
+
+
+			////more custom settings
+			var opt = 
+			{
+			  margin:       0.1,
+			  filename:     'Contract.pdf',
+			  image:        { type: 'jpeg', quality: 0.98 },
+			  html2canvas:  { scale: 2 },
+			  jsPDF:        { unit: 'in', format: 'A4', orientation: 'portrait' }
+			};
+
+			//// New Promise-based usage:
+			html2pdf().set(opt).from(element).save();
+
+			 
+		});
+	});
+	</script>
+
+	 
+
 </head>
 
-<body onload="autoClick();" style="background-color: white;">
-    <a id="download">Download</a>
-    <div id="htmlContent">
+<body>
+    <div class="text-center" style="padding:20px;">
+        <input type="button" id="rep" value="Print" class="btn btn-info btn_print">
+    </div>
+    <div id="container_content">
         <div class="section one">
             <div class="column left-column" style="border: 1px solid black; margin:3px">
                 <p style="margin: 3px"><b>A:</b> Denumirea organului fiscal local de la domiciliul/sediul persoanei care înstrăinează</p>
@@ -105,13 +143,13 @@
                 , nr. ......, bl. ......, sc. ......., et. ......, ap ......, identificat prin B.I./C.I./C.I.P./Paşaport seria ...... nr. ................, C.N.P./C.I.F4) ...................................................., tel./fax ................................, e-mail …………………….…………………, şi domiciliul fiscal în ROMÂNIA/ ....................., judeţul ........................................, codul postal………… municipiul / oraşul / comuna ........................................., satul/sectorul .................................., str. ................................. ................................, nr. ........, bl. .........., sc. ........, et. ......., ap .........., reprezentată prin..................................................................... identificat prin B.I./C.I./C.I.P./Paşaport seria ….... nr. .............., C.I.F .........................................., tel./fax........................................, e-mail …...........................................…, în calitate de ....................................................................................
             </p>
         </div>
-        <div class="section three">
+        @*<div class="section three">
             <p>
                 <b>(2) PERSOANA CARE DOBÂNDEŞTE</b> Subsemnatul(a)/Subscrisa <b>@Model.Person.LastName @Model.Person.FirstName</b> cu domiciliul/sediul în ROMÂNIA/ <b>@Model.Person.Address </b>, codul poştal ...................,  identificat prin B.I./C.I./C.I.P./Paşaport seria <b>@Model.Person.SerialCharacters</b> nr. <b>@Model.Person.SerialNumber</b>, C.N.P./C.I.F4) <b>@Model.Person.PersonalIdentificationNumber</b>, tel. <b>@Model.Person.Phone</b>, e-mail <b>@Model.Person.Email</b>, şi domiciliul fiscal în ROMÂNIA.
                 în calitate de <b>proprietar</b>.
             </p>
         </div>
-        <div class="section four">
+       *@ <div class="section four">
             <p style="font-weight: bold; margin:3px">(3) OBIECTUL CONTRACTULUI</p>
             <p style="text-align:justify; margin: 3px">Mijlocul de transport: marca ………………………….. tipul ……………., număr de identificare ……..................................... serie motor ……….............. capacitatea cilindrică …….... cm³, greutate maximă admisă (pentru remorci / semiremorci) …….… tone, număr de înmatriculare/înregistrare ……...........….…, data la care expiră inspecţia tehnică periodică ……………………….,numărul cărţii de identitate a vehiculului …………….., anul de fabricaţie ........................., norma euro ......... dobândit la data de......................................, conform act ………………………….……...........……………………….</p>
         </div>
@@ -180,27 +218,7 @@
         </div>
     </div>
 
-    <script>
-        function autoClick() {
-            $("#download").click();
-        }
-
-        $(document).ready(function () {
-            var element = $("#htmlContent");
-
-            $("#download").on('click', function () {
-
-                html2canvas(element, {
-                    onrendered: function (canvas) {
-                        var imageData = canvas.toDataURL("image/jpg");
-                        var newData = imageData.replace(/^data:image\/jpg/, "data:application/octet-stream");
-                        $("#download").attr("download", "image.jpg").attr("href", newData);
-                    }
-                });
-
-            });
-        });
-    </script>
+  
 </body>
 
 </html>
