@@ -1,165 +1,45 @@
 ﻿@page
 @model Contracts.Pages.TestModel
 @{
+    Layout = null;
 }
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Convert HTML To Image</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js">
+    </script>
+</head>
 
-<style>
-    .containerT {
-        border-top: 1px solid #000;
-        display: flex;
-        list-style: none;
-        padding: 0;
-        justify-content: space-between;
-        align-items: stretch;
-        align-content: stretch;
-    }
+<body onload="autoClick();">
 
-    .link {
-        position: relative;
-        margin-top: 10px;
-        width: 100%;
-    }
+    <div id="htmlContent">
+        <h1>Hello World!</h1>
+    </div>
+    <a id="download">Download</a>
 
-        .link a {
-            font-weight: bold;
-            text-decoration: none;
-            color: black;
-            text-transform: uppercase;
-            font-size: 12px;
+    <script type="text/javascript">
+        function autoClick() {
+            $("#download").click();
         }
 
-        .link:first-child {
-            margin-left: -55px;
-        }
+        $(document).ready(function () {
+            var element = $("#htmlContent");
 
-        .link:last-child {
-            margin-right: -55px;
-        }
+            $("#download").on('click', function () {
 
-        .link::after {
-            content: "";
-            width: 15px;
-            height: 15px;
-            background: #fff;
-            position: absolute;
-            border-radius: 20px;
-            top: -18px;
-            left: 50%;
-            transform: translatex(-50%);
-            border: 2px solid black;
-        }
-
-        .active::after,
-        .link:hover::after {
-            background: black;
-        }
-
-    p.lead {
-        font-weight: 600;
-        margin: 50px auto;
-        line-height: 1.5;
-    }
-</style>
-<h1>Transformă pagina HTML în imagine</h1>
-<button id="convertButton">Convertă în imagine</button>
-<div id="convert">
-<div style=" padding: 50px; text-align: center;font-family: sans-serif;width: 500px;margin: 1px auto;">
-    <h3>Completarea Datelor</h3>
-    <br/>
-    <ul class="containerT">
-        @if(Model.Stage == 1)
-        {
-            <li class="link active"><a href="">Vanzator</a></li>
-        }
-        else
-        {
-            <li class="link"><a href="">Vanzator</a></li>
-        }
-
-        @if (Model.Stage == 2)
-        {
-            <li class="link active"><a href="">Cumparator</a></li>
-        }
-        else
-        {
-            <li class="link"><a href="">Cumparator</a></li>
-        }
-
-        @if (Model.Stage == 3)
-        {
-            <li class="link active"><a href="">Masina</a></li>
-        }
-        else
-        {
-            <li class="link"><a href="">Masina</a></li>
-        }
-
-        @if (Model.Stage == 4)
-        {
-            <li class="link active"><a href="">Oferta</a></li>
-        }
-        else
-        {
-            <li class="link"><a href="">Oferta</a></li>
-        }
-
-        @if (Model.Stage == 5)
-        {
-            <li class="link active"><a href="">Terminat</a></li>
-        }
-        else
-        {
-            <li class="link"><a href="">Terminat</a></li>
-        }
-
-    </ul>
-</div>
-</div>
-
- <script>
-    // Asigură-te că se execută codul JavaScript după încărcarea paginii
-    document.addEventListener("DOMContentLoaded", function () {
-        // Selectează butonul
-        var convertButton = document.getElementById("convertButton");
-
-        // Atașează un eveniment de click butonului
-        convertButton.addEventListener("click", function () {
-            // Creează o variabilă care să stocheze imaginea
-            var image = new Image();
-
-            // Configurează dimensiunile imaginii
-            image.width = window.innerWidth;
-            image.height = window.innerHeight;
-
-            // Capturează pagina într-un canvas
-            var canvas = document.createElement("canvas");
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            var context = canvas.getContext("2d");
-
-            // Desenează pagina pe canvas
-            html2canvas(document.body).then(function (canvas) {
-                // Transformă canvas într-o imagine
-                image.src = canvas.toDataURL("image/png");
-
-                // Adaugă imaginea la corpul paginii sau poți face altceva cu ea
-                document.body.appendChild(image);
-
+                html2canvas(element, {
+                    onrendered: function (canvas) {
+                        var imageData = canvas.toDataURL("image/jpg");
+                        var newData = imageData.replace(/^data:image\/jpg/, "data:application/octet-stream");
+                        $("#download").attr("download", "image.jpg").attr("href", newData);
+                    }
+                });
 
             });
-
-             // Adaugă imaginea la corpul paginii sau poți face altceva cu ea
-    document.body.appendChild(image);
-
-    // Creează un element de link pentru descărcare
-    var downloadLink = document.createElement("a");
-    downloadLink.href = image.src;
-    downloadLink.download = "pagina.png"; // Numele fișierului pentru descărcare
-    downloadLink.innerHTML = "Descarcă imaginea";
-
-    // Adaugă linkul de descărcare la corpul paginii
-    document.body.appendChild(downloadLink);
         });
-    });
-
- </script>
+    </script>
+</body>
+</html>
