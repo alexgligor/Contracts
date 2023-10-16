@@ -13,13 +13,17 @@ namespace Contracts.Pages
         [BindProperty]
         public FinancialInfo FInfo { get; set; }
 
-        public IActionResult OnGet()
+
+        [BindProperty]
+        public String SessionID { get; set; }
+
+        public IActionResult OnGet(string sessionid)
         {
-            if (TempData.TryGetValue("SessionId", out object sessionId))
-            {
-                var sessionIdString = sessionId as string;
-                // Utilizarea obiectului "person"
-                var data = SessionsData.GetSesionData(sessionIdString);
+            SessionID = sessionid;
+
+            var data = SessionsData.GetSesionData(sessionid);
+            if (data == null)
+            { 
 
                 FInfo = data.FinancialInfo;
             }
@@ -48,14 +52,9 @@ namespace Contracts.Pages
                 // If ModelState is not valid, redisplay the form with validation errors
                 return Page();
             }
+            SessionsData.AddFinancialInfo(FInfo, SessionID);
 
-            if (TempData.TryGetValue("SessionId", out object sessionId))
-            {
-                var sessionIdString = sessionId as string;
-                // Utilizarea obiectului "person"
-                SessionsData.AddFinancialInfo(FInfo, sessionIdString);
-            }
-            return Redirect("/Contract");
+            return RedirectToPage("/Contract", new { sessionid = SessionID });
         }
     }
 }

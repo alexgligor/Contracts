@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Contracts.Models;
-using System;
-using Newtonsoft.Json;
 
 namespace Contracts.Pages
 {
@@ -11,34 +9,13 @@ namespace Contracts.Pages
         [BindProperty]
         public int Stage { get; set; } = 1;
 
-        private readonly ILogger<IndexModel> _logger;
-
-        private Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnvironment;
-
-
-        public SellerlModel(ILogger<IndexModel> logger, Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnvironment)
-        {
-            _logger = logger;
-            this.hostingEnvironment = hostingEnvironment ?? throw new ArgumentNullException(nameof(hostingEnvironment));
-        }
-
         [BindProperty]
         public Person Person { get; set; }
 
         public IActionResult OnGet()
         {
 
-            // Extracție
-            if (TempData.TryGetValue("SessionId", out object sessionId))
-            {
-                var sessionIdString = sessionId as string;
-                // Utilizarea obiectului "person"
-                var data = SessionsData.GetSesionData(sessionIdString);
-
-                Person = data.Seller;
-            }
-            else
-            {
+            
                 Person = new Person();
 #if DEBUG
                 Person = new Person()
@@ -53,7 +30,6 @@ namespace Contracts.Pages
                     SerialNumber = "905656"
                 };
 #endif
-            }
 
             return Page();
             
@@ -64,8 +40,8 @@ namespace Contracts.Pages
         {
             var sessionId = new Random().Next(1, 100000).ToString();
             SessionsData.AddSeller(Person, sessionId);
-            TempData["SessionId"] = sessionId;
-            return Redirect("/Buyer");
+
+            return RedirectToPage("/Buyer", new { sessionid = sessionId });
         }
     }
 }

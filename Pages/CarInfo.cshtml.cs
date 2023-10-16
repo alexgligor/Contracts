@@ -13,14 +13,16 @@ namespace Contracts.Pages
         [BindProperty]
         public Car Car { get; set; }
 
-        public IActionResult OnGet()
-        {
-            if (TempData.TryGetValue("SessionId", out object sessionId))
-            {
-                var sessionIdString = sessionId as string;
-                // Utilizarea obiectului "person"
-                var data = SessionsData.GetSesionData(sessionIdString);
+        [BindProperty]
+        public String SessionID { get; set; }
 
+        public IActionResult OnGet(string sessionid)
+        {
+            SessionID = sessionid;
+
+            var data = SessionsData.GetSesionData(sessionid);
+            if (data == null)
+            { 
                 Car = data.Car;
             }
             else
@@ -58,15 +60,9 @@ namespace Contracts.Pages
                 return Page();
             }
 
-            // Extracție
-            if (TempData.TryGetValue("SessionId", out object sessionId))
-            {
-                var sessionIdString = sessionId as string;
-                // Utilizarea obiectului "person"
-                SessionsData.AddCarInfo(Car, sessionIdString);
-            }
+            SessionsData.AddCarInfo(Car, SessionID);
 
-            return Redirect("/FinancialInfo");
+            return RedirectToPage("/FinancialInfo", new { sessionid = SessionID });
         }
     }
 }

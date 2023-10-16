@@ -12,15 +12,9 @@ namespace Contracts.Pages
         [BindProperty]
         public int Stage { get; set; } = 5;
 
-        public void OnGet()
+        public void OnGet(string sessionid)
         {
-            if (TempData.TryGetValue("SessionId", out object sessionId))
-            {
-                var sessionIdString = sessionId as string;
-                // Utilizarea obiectului "person"
-                CarContractData = SessionsData.GetSesionData(sessionIdString);
-                
-            }
+            CarContractData = SessionsData.GetSesionData(sessionid);
         }
     }
 }
