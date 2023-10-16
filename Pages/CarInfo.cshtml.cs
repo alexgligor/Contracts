@@ -40,7 +40,14 @@ namespace Contracts.Pages
                 return Page();
             }
 
-            TempData["Car"] = JsonConvert.SerializeObject(Car);
+            // Extracție
+            if (TempData.TryGetValue("SessionId", out object sessionId))
+            {
+                var sessionIdString = sessionId as string;
+                // Utilizarea obiectului "person"
+                SessionsData.AddCarInfo(Car, sessionIdString);
+            }
+
             return Redirect("/FinancialInfo");
         }
     }
