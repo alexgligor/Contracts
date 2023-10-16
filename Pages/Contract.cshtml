@@ -1,22 +1,24 @@
 ﻿@page
 @model Contracts.Pages.ContractModel
-@{
-    // Layout = null; // Dezactivează utilizarea layout-ului HTML
-}
-<html>
+
 <style>
+    .container_s {
+        height: 297mm; /* Înălțimea paginii A4 */
+        width: 210mm; /* Lățimea paginii A4 */
+        background-color: #fff;
+        margin: 20px auto; /* Margin auto pentru a centra pe orizontală și un spațiu de 20px deasupra butonului */
+
+
+        box-shadow: 15px 15px 10px 15px rgba(0, 0, 0, 0.5);
+        z-index: 2; /* Acesta este pentru a plasa div-ul în prim plan */
+    }
+
     .container_content {
         height: 297mm; /* Înălțimea paginii A4 */
         width: 210mm; /* Lățimea paginii A4 */
         margin-left: auto; /* Centralizează conținutul pe pagină */
         margin-right: auto; /* Centralizează conținutul pe pagină */
         background-color: #fff;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.5);
-        z-index: 2; /* Acesta este pentru a plasa div-ul în prim plan */
     }
 
     .two, .three, .four, .five, .six, .seven, .eight, .nine {
@@ -49,16 +51,19 @@
         width: 60%;
         text-align: left;
         border-right: 1px solid black;
+        flex: 1;
     }
 
     .seven-two, .eight-two {
         width: 3%;
+        flex: 1;
     }
 
     .seven-three, .eight-three {
         width: 35%;
         text-align: left;
         border-left: 1px solid black;
+        flex: 1;
     }
 
     p, span, h3 {
@@ -79,15 +84,6 @@
             event.preventDefault();
 
             var element = document.getElementById('container_content');
-
-            //easy
-            //html2pdf().from(element).save();
-
-            //custom file name
-            //html2pdf().set({filename: 'contract_'+js.AutoCode()+'.pdf'}).from(element).save();
-
-
-            ////more custom settings
             var opt =
             {
                 margin: 0.1,
@@ -97,17 +93,12 @@
                 jsPDF: { unit: 'in', format: 'A4', orientation: 'portrait' }
             };
 
-            //// New Promise-based usage:
             html2pdf().set(opt).from(element).save();
-
-
         });
     });
 </script>
 
-<div style="text-align: center;font-family: sans-serif;width: 400px;margin: 1px auto;">
-
-
+<div class="cursor-div">
     <h3>Completarea Datelor</h3>
     <br />
     <ul class="containerT">
@@ -162,120 +153,141 @@
 <div class="text-center" style="padding:20px;">
     <input type="button" id="rep" value="Salveaza ca PDF" class="btn btn-info btn_print">
 </div>
-<div id="container_content">
-    <div class="section one">
-        <div class="column left-column" style="border: 1px solid black; margin:3px">
-            <p style="margin: 3px"><b>A:</b> Denumirea organului fiscal local de la domiciliul/sediul persoanei care înstrăinează</p>
-            <p style="margin: 3px">CIF/Cod SIRUTA</p>
-            <p style="margin: 3px">Adresa</p>
-            <p style="margin: 3px">Tel/fax/e-mail</p>
-            <p style="margin: 3px">REMTII Nr. ………/………….20…</p>
-            <p style="margin: 3px">Rol nr.: ………………………</p>
-            <span style="margin-right: 30px; margin: 3px">  Original</span>
-            <span>  Copie</span>
-        </div>
-        <div class="column center-column">
-            <p>Model 2016 ITL 054 Anexa nr. 2</p>
-            <p>CONTRACT DE ÎNSTRĂINARE – DOBÂNDIRE A UNUI MIJLOC DE TRANSPORT</p>
-        </div>
-        <div class="column right-column" style="border: 1px solid black;margin:3px">
-            <p style="margin: 3px"><b>B:</b> Denumirea organului fiscal local</p>
-            <p style="margin: 3px">Vânzătorul NU are debite la data de întâi a lunii următoare înregistrării actului de înstrăinare-dobândire <small style="font-style: italic;">(se completează și pe copii):</small></p>
-            <p style="margin: 3px">Prenumele ………………………</p>
-            <p style="margin: 3px">Numele …………………………</p>
-            <p style="margin: 3px">Funcţia …………………………</p>
-            <p style="margin: 3px">LS.</p>
-        </div>
-    </div>
-    <div class="section two">
-        <p style="text-align:justify; margin: 3px">
-            <b>(1) PERSOANA CARE ÎNSTRĂINEAZĂ</b> Subsemnatul(a)/Subscrisa <b>@Model.CarContractData.Seller.LastName @Model.CarContractData.Seller.FirstName</b> cu domiciliul/sediul în ROMÂNIA/ <b>@Model.CarContractData.Seller.Address </b>, codul poştal ...................,  identificat prin B.I./C.I./C.I.P./Paşaport seria <b>@Model.CarContractData.Seller.SerialCharacters</b> nr. <b>@Model.CarContractData.Seller.SerialNumber</b>, C.N.P./C.I.F4) <b>@Model.CarContractData.Seller.PersonalIdentificationNumber</b>, tel. <b>@Model.CarContractData.Seller.Phone</b>, e-mail <b>@Model.CarContractData.Seller.Email</b>, şi domiciliul fiscal în ROMÂNIA.
-            în calitate de <b>proprietar</b>.
-    </div>
-    <div class="section three">
-        <p>
-            <b>(2) PERSOANA CARE DOBÂNDEŞTE</b> Subsemnatul(a)/Subscrisa <b>@Model.CarContractData.Buyer.LastName @Model.CarContractData.Buyer.FirstName</b> cu domiciliul/sediul în ROMÂNIA/ <b>@Model.CarContractData.Buyer.Address </b>, codul poştal ...................,  identificat prin B.I./C.I./C.I.P./Paşaport seria <b>@Model.CarContractData.Buyer.SerialCharacters</b> nr. <b>@Model.CarContractData.Buyer.SerialNumber</b>, C.N.P./C.I.F4) <b>@Model.CarContractData.Buyer.PersonalIdentificationNumber</b>, tel. <b>@Model.CarContractData.Buyer.Phone</b>, e-mail <b>@Model.CarContractData.Buyer.Email</b>, şi domiciliul fiscal în ROMÂNIA.
-            în calitate de <b>cumparator</b>.
-        </p>
-    </div>
-    <div class="section four">
-        <p style="font-weight: bold; margin:3px">(3) OBIECTUL CONTRACTULUI</p>
-        <p style="text-align:justify; margin: 3px">Mijlocul de transport: marca <b>@Model.CarContractData.Car.Name</b>, tipul <b>@Model.CarContractData.Car.Model</b>, număr de identificare <b>@Model.CarContractData.Car.VIN</b>, serie motor <b>@Model.CarContractData.Car.EngineSN</b>, capacitatea cilindrică <b>@Model.CarContractData.Car.EngineCCM</b> cm³, greutate maximă admisă (pentru remorci / semiremorci) <b>@Model.CarContractData.Car.Weight KG</b>, număr de înmatriculare/înregistrare <b>@Model.CarContractData.Car.PlateNumber</b>, data la care expiră inspecţia tehnică periodică <b>@Model.CarContractData.Car.LastInspection</b>,numărul cărţii de identitate a vehiculului ......., anul de fabricaţie <b>@Model.CarContractData.Car.FabricationYear</b>, norma euro <b>@Model.CarContractData.Car.EuroPolutionNorm</b> dobândit la data de <b>@Model.CarContractData.Car.AcquisitionDate</b>, conform act <b>@Model.CarContractData.Car.AcuisitionPaperName</b>.</p>
-    </div>
-    <div class="section five">
-        <p style="margin:3px"><b>(4) PREŢUL</b> în cifre <b>@Model.CarContractData.FinancialInfo.Price</b> <b>@Model.CarContractData.FinancialInfo.Currency</b>, în litere <b>@Model.CarContractData.FinancialInfo.PriceAsString()</b>.</p>
-    </div>
-    <div class="section six">
-        <p style="margin:3px"><b>(5)</b> Persoana care înstrăinează menţionată la punctul (1) declară ca mijlocul de transport este proprietatea sa, liber de orice sarcini.</p>
-        <p style="margin:3px; font-size:9px">De asemenea, declară ca a predat persoanei care dobândeşte menţionat la punctul (2) vehiculul, cheile, certificatul de înmatriculare şi cartea de identitate a vehiculului, primind de la acesta preţul prevăzut la punctul (4).</p>
-        <p style="margin:3px; font-size:9px">Persoana care dobândeşte menţionată la punctul (2) declară ca a primit de la vânzătorul menţionat la punctul (1) mijlocului de transport, cheile, certificatul de înmatriculare şi cartea de identitate a vehiculului, achitând persoanei care înstrăinează preţul menţionat la punctul (4).</p>
-        <p style="margin:3px; font-size:9px">Anexe la contract:  Da  Nu  </p>
-        <p style="margin:3px; font-size:9px">Atât persoana care înstrăinează, cât şi dobânditorul declară, cunoscând prevederile Codului penal privind falsul şi uzul de fals că toate informaţiile înscrise în prezentul document corespund realităţii.</p>
-        <p style="margin:3px; font-size:9px">Începând cu data semnării, dobânditorul are calitatea de proprietar de drept şi de fapt asupra mijlocului de transport ce face obiectul prezentului contract de înstrăinare-dobândire, preluând toate obligaţiile prevăzute de lege, inclusiv cele legate de transcrierea vehiculului pe numele sau, <b>în maxim 30 de zile, de la data încheierii prezentului act.</b> </p>
-        <p style="font-weight:bold; margin:3px;"> Data şi locul încheierii contractului <b>@Model.CarContractData.FinancialInfo.Location</b>/ @DateTime.Now.ToShortTimeString()</p>
 
-        <div style="display: flex;">
-            <div style="flex:1;">
-                <p style="font-weight:bold; margin:3px;"> Semnătura persoanei care înstrăinează</p>
-                <img src="@Model.CarContractData.FinancialInfo.SellerSignature" style="height: 20mm;width: 40mm;" />
-
+<div class="container_s">
+    <div id="container_content">
+        <div class="section one">
+            <div class="column left-column" style="border: 1px solid black; margin:3px">
+                <p style="margin: 3px"><b>A:</b> Denumirea organului fiscal local de la domiciliul/sediul persoanei care înstrăinează</p>
+                <p style="margin: 3px">CIF/Cod SIRUTA</p>
+                <p style="margin: 3px">Adresa</p>
+                <p style="margin: 3px">Tel/fax/e-mail</p>
+                <p style="margin: 3px">REMTII Nr. ………/………….20…</p>
+                <p style="margin: 3px">Rol nr.: ………………………</p>
+                <span style="margin-right: 30px; margin: 3px">  Original</span>
+                <span>  Copie</span>
             </div>
-            <div style="flex:1;">
-                <p style="font-weight:bold; margin:3px;"> Semnătura persoanei care dobândeşte …………………</p>
-                <img src="@Model.CarContractData.FinancialInfo.BuyerSignature" style="height: 20mm;width: 40mm;" />
-
+            <div class="column center-column">
+                <p>Model 2016 ITL 054 Anexa nr. 2</p>
+                <p style="font-size: 16px">CONTRACT DE ÎNSTRĂINARE – DOBÂNDIRE A UNUI MIJLOC DE TRANSPORT</p>
+            </div>
+            <div class="column right-column" style="border: 1px solid black;margin:3px">
+                <p style="margin: 3px"><b>B:</b> Denumirea organului fiscal local</p>
+                <p style="margin: 3px">Vânzătorul NU are debite la data de întâi a lunii următoare înregistrării actului de înstrăinare-dobândire <small style="font-style: italic;">(se completează și pe copii):</small></p>
+                <p style="margin: 3px">Prenumele ………………………</p>
+                <p style="margin: 3px">Numele …………………………</p>
+                <p style="margin: 3px">Funcţia …………………………</p>
+                <p style="margin: 3px; padding: 0 0 10px 0">LS.</p>
             </div>
         </div>
-
-    </div>
-    <div class="section seven">
-        <div class=" column seven-one">
-            <p style="margin: 3px; text-align:justify;">
-                1) REMTII - Registrul de evidenta a mijloacelor de transport supuse înmatriculării/înregistrării de la organul fiscal local al persoanei care înstrăinează;<br>
-                2) Prin completarea de către organul fiscal local a cartuşului B se atestă îndeplinirea prevederilor art. 159 alin. (5) din Legea nr. 207/2015 privind Codul de procedură fiscală, cu modificările și completările ulterioare, nemaifiind necesară eliberarea unui certificat de atestare fiscală. Cartuşele A și B se completează de organul fiscal local unde este înregistrat mijlocul de transport al persoanei care înstrăinează; <br>
-                3) Se completează în cazul persoanelor fizice; <br>
-                4) Se completează: codul de identificare fiscală (codul numeric personal, numărul de identificare fiscală, după caz); <br>
-                5) Se completează în cazul persoanelor juridice; <br>
-                6) Moştenitorii trebuie să facă dovada proprietăţii cu certificatul de moşt enitor sau, în lipsa acestuia cu sentinţa judecătorească, după caz;
+        <div class="section two">
+            <p style="text-align:justify; margin: 3px">
+                <b>(1) PERSOANA CARE ÎNSTRĂINEAZĂ</b> Subsemnatul(a)/Subscrisa <b>@Model.CarContractData.Seller.LastName @Model.CarContractData.Seller.FirstName</b>
+                cu domiciliul/sediul în ROMÂNIA/ <b>@Model.CarContractData.Seller.Address </b>, codul poştal <b>@Model.CarContractData.Seller.PostalCode</b>,  identificat prin
+                B.I./C.I./C.I.P./Paşaport seria <b>@Model.CarContractData.Seller.SerialCharacters</b> nr. <b>@Model.CarContractData.Seller.SerialNumber</b>,
+                C.N.P./C.I.F4) <b>@Model.CarContractData.Seller.PersonalIdentificationNumber</b>, tel. <b>@Model.CarContractData.Seller.Phone</b>,
+                e-mail <b>@Model.CarContractData.Seller.Email</b>, şi domiciliul fiscal în ROMÂNIA/ ............, judeţul ...................., codul postal…………
+                municipiul / oraşul / comuna .............., satul/sectorul .................,
+                str. ......................., nr. ........, bl. ...., sc. ..., et. ......., ap .....,
+                reprezentată prin................ identificat prin B.I./C.I./C.I.P./Paşaport seria .. nr. .......,
+                C.I.F ........................., tel./fax...................., e-mail .................…,
+                în calitate de <b>proprietar</b>.
             </p>
         </div>
-        <div class=" column seven-two">
+        <div class="section three">
+            <p>
+                <b>(2) PERSOANA CARE DOBÂNDEŞTE</b> Subsemnatul(a)/Subscrisa <b>@Model.CarContractData.Buyer.LastName @Model.CarContractData.Buyer.FirstName</b>
+                cu domiciliul/sediul în ROMÂNIA/ <b>@Model.CarContractData.Buyer.Address </b>, codul poştal <b>@Model.CarContractData.Buyer.PostalCode</b>,  identificat prin
+                B.I./C.I./C.I.P./Paşaport seria <b>@Model.CarContractData.Buyer.SerialCharacters</b> nr. <b>@Model.CarContractData.Buyer.SerialNumber</b>,
+                C.N.P./C.I.F4) <b>@Model.CarContractData.Buyer.PersonalIdentificationNumber</b>, tel. <b>@Model.CarContractData.Buyer.Phone</b>,
+                e-mail <b>@Model.CarContractData.Buyer.Email</b>, şi domiciliul fiscal în ROMÂNIA/ ......., judeţul .................., codul postal…………
+                municipiul / oraşul / comuna ........................, satul/sectorul ...................,
+                str. ......................., nr. ....., bl. ......, sc. ...., et. ..., ap .....,
+                reprezentată prin................... identificat prin B.I./C.I./C.I.P./Paşaport seria ….... nr. ..............,
+                C.I.F ......................, tel./fax.............., e-mail …..................…,
+                în calitate de <b>cumparator</b>.
+            </p>
         </div>
-        <div class="column seven-three" style="font-weight:bold; text-align:center">
-            <p style="margin:3px">Copie 1 – 4 „Conform cu originalul” </p>
-            <small style="font-style: italic;">(Se semnează doar pe copii)</small>
-            <h3>Semnătură</h3>
-            <p> Vânzător </p>
-            <p> ………………………… </p>
-            <p> Cumpărător </p>
-            <p> ………………………… </p>
+        <div class="section four">
+            <p style="font-weight: bold; margin:3px">(3) OBIECTUL CONTRACTULUI</p>
+            <p style="text-align:justify; margin: 3px">Mijlocul de transport: marca <b>@Model.CarContractData.Car.Name</b>, tipul <b>@Model.CarContractData.Car.Model</b>, număr de identificare <b>@Model.CarContractData.Car.VIN</b>, serie motor <b>@Model.CarContractData.Car.EngineSN</b>, capacitatea cilindrică <b>@Model.CarContractData.Car.EngineCCM</b> cm³, greutate maximă admisă (pentru remorci / semiremorci) <b>@Model.CarContractData.Car.Weight KG</b>, număr de înmatriculare/înregistrare <b>@Model.CarContractData.Car.PlateNumber</b>, data la care expiră inspecţia tehnică periodică <b>@Model.CarContractData.Car.LastInspection</b>,numărul cărţii de identitate a vehiculului ......., anul de fabricaţie <b>@Model.CarContractData.Car.FabricationYear</b>, norma euro <b>@Model.CarContractData.Car.EuroPolutionNorm</b> dobândit la data de <b>@Model.CarContractData.Car.AcquisitionDate</b>, conform act <b>@Model.CarContractData.Car.AcuisitionPaperName</b>.</p>
         </div>
-    </div>
-    <div class="section eight" style="font-weight : bold">
-        <div class=" column eight-one">
-            <p style="margin: 3px">C: Denumirea organului fiscal local de la domiciliul persoanei care dobândeşte</p>
-            <p style="margin: 3px">CIF/Cod SIRUTA</p>
-            <p style="margin: 3px">Adresa</p>
-            <p style="margin: 3px">Tel/fax/e-mail</p>
-            <p style="margin: 3px">REMTII Nr. ………………/………………….20…</p>
-            <p style="margin: 3px">Rol nr.: …………………………………</p>
+        <div class="section five">
+            <p style="margin:3px"><b>(4) PREŢUL</b> în cifre <b>@Model.CarContractData.FinancialInfo.Price</b> <b>@Model.CarContractData.FinancialInfo.Currency</b>, în litere <b>@Model.CarContractData.FinancialInfo.PriceAsString() @Model.CarContractData.FinancialInfo.Currency</b>.</p>
         </div>
-        <div class=" column eight-two">
+        <div class="section six">
+            <p style="margin:3px; font-size:8px">
+                <b style="font-size:14px">(5)</b> Persoana care înstrăinează menţionată la punctul (1) declară ca mijlocul de transport este proprietatea sa, liber de orice sarcini.
+                De asemenea, declară ca a predat persoanei care dobândeşte menţionat la punctul (2) vehiculul, cheile, certificatul de înmatriculare şi cartea de identitate a vehiculului, primind de la acesta preţul prevăzut la punctul (4). Persoana care dobândeşte menţionată la punctul (2) declară ca a primit de la vânzătorul menţionat la punctul (1) mijlocului de transport, cheile, certificatul de înmatriculare şi cartea de identitate a vehiculului, achitând persoanei care înstrăinează preţul menţionat la punctul (4).
+            </p>
+            <p style="margin:3px; font-size:8px">Anexe la contract:  Da  Nu  </p>
+            <p style="margin:3px; font-size:8px">Atât persoana care înstrăinează, cât şi dobânditorul declară, cunoscând prevederile Codului penal privind falsul şi uzul de fals că toate informaţiile înscrise în prezentul document corespund realităţii. Începând cu data semnării, dobânditorul are calitatea de proprietar de drept şi de fapt asupra mijlocului de transport ce face obiectul prezentului contract de înstrăinare-dobândire, preluând toate obligaţiile prevăzute de lege, inclusiv cele legate de transcrierea vehiculului pe numele sau, <b>în maxim 30 de zile, de la data încheierii prezentului act.</b> </p>
+            <p style="font-weight:bold; margin:3px;"> Data şi locul încheierii contractului: <b style="font-size:14px">@Model.CarContractData.FinancialInfo.Location/ @DateTime.Now.ToLongDateString()</b> </p>
+            <div style="display: flex;">
+                <div style="flex:1;">
+                    <br />
+                    <p style="font-weight:bold; margin:3px;"> Semnătura persoanei care înstrăinează: …………………</p>
+
+                </div>
+                <div style="flex:1;">
+                    <img src="@Model.CarContractData.FinancialInfo.SellerSignature" style="height: 20mm;width: 40mm;" />
+                </div>
+                <div style="flex:1;">
+                    <br />
+                    <p style="font-weight:bold; margin:3px;"> Semnătura persoanei care dobândeşte: …………………</p>
+                </div>
+                <div style="flex:1;">
+                    <img src="@Model.CarContractData.FinancialInfo.BuyerSignature" style="height: 20mm;width: 40mm;" />
+                </div>
+            </div>
+
         </div>
-        <div class="column eight-three">
-            <p style="margin:9px">Prenumele …………………………</p>
-            <p style="margin:9px">Numele ……………………………</p>
-            <p style="margin:9px">Funcția ……………………………</p>
-            <p style="margin:9px">LS.</p>
+        <div class="section seven">
+            <div class=" column seven-one">
+                <p style="margin: 3px; text-align:justify; font-size:8px">
+                    1) REMTII - Registrul de evidenta a mijloacelor de transport supuse înmatriculării/înregistrării de la organul fiscal local al persoanei care înstrăinează;<br>
+                    2) Prin completarea de către organul fiscal local a cartuşului B se atestă îndeplinirea prevederilor art. 159 alin. (5) din Legea nr. 207/2015 privind Codul de procedură fiscală, cu modificările și completările ulterioare, nemaifiind necesară eliberarea unui certificat de atestare fiscală. Cartuşele A și B se completează de organul fiscal local unde este înregistrat mijlocul de transport al persoanei care înstrăinează; <br>
+                    3) Se completează în cazul persoanelor fizice; <br>
+                    4) Se completează: codul de identificare fiscală (codul numeric personal, numărul de identificare fiscală, după caz); <br>
+                    5) Se completează în cazul persoanelor juridice; <br>
+                    6) Moştenitorii trebuie să facă dovada proprietăţii cu certificatul de moşt enitor sau, în lipsa acestuia cu sentinţa judecătorească, după caz;
+                </p>
+            </div>
+            <div class=" column seven-two">
+            </div>
+            <div class="column seven-three" style="font-weight:bold; text-align:center">
+                <p style="font-size:8px"> Copie 1 – 4 „Conform cu originalul” </p>
+                <small style="font-style: italic;">(Se semnează doar pe copii)</small>
+                <p style="font-size:9px"> Vânzător  <br />  …………………………<br />  Cumpărător <br />  ………………………… </p>
+            </div>
         </div>
-    </div>
-    <div class="section nine">
-        <p style="margin: 3px; text-align:justify;">
-            7) REMTII - registrul de evidenta a mijloacelor de transport supuse înmatriculării/înregistrării de la organul fiscal local al persoanei care dobândește. Se completează pe exemplarul original
-            care rămâne la dobânditor, pe exemplarul-copie care însoțește declarația de impunere și pe exemplarul-copie care se depune la organul competent privind înmatricularea/înregistrarea/radierea
-            mijloacelor de transport. Cartuşul C se completează de organul fiscal local de la domiciliul persoanei care a dobândit mijlocul de transport. Informatiile referitoare la transmiterea dreptului
-            de proprietate se comunica si se mentioneaza in Registrul national de evidenta a permiselor de conducere si a vehiculelor inmatriculate; aceasta mentiune nu produce efectul juridic al
-            transcrierii transmiterii dreptului de proprietate.
-        </p>
+        <div class="section eight" style="font-weight : bold">
+            <div class=" column eight-one">
+                <p style="margin: 3px;font-size: 10px">C: Denumirea organului fiscal local de la domiciliul persoanei care dobândeşte</p>
+                <p style="margin: 3px;font-size: 10px">CIF/Cod SIRUTA</p>
+                <p style="margin: 3px;font-size: 10px">Adresa</p>
+                <p style="margin: 3px;font-size: 10px">Tel/fax/e-mail</p>
+                <p style="margin: 3px;font-size: 10px">REMTII Nr. ………………/………………….20…</p>
+                <p style="margin: 3px;font-size: 10px">Rol nr.: …………………………………</p>
+            </div>
+            <div class=" column eight-two">
+            </div>
+            <div class="column eight-three">
+                <p style="margin:9px;font-size: 10px">Prenumele …………………………</p>
+                <p style="margin:9px;font-size: 10px">Numele ……………………………</p>
+                <p style="margin:9px;font-size: 10px">Funcția ……………………………</p>
+                <p style="margin:9px;font-size: 10px">LS.</p>
+            </div>
+        </div>
+        <div class="section nine">
+            <p style="margin: 3px; text-align:justify; font-size:8px">
+                7) REMTII - registrul de evidenta a mijloacelor de transport supuse înmatriculării/înregistrării de la organul fiscal local al persoanei care dobândește. Se completează pe exemplarul original
+                care rămâne la dobânditor, pe exemplarul-copie care însoțește declarația de impunere și pe exemplarul-copie care se depune la organul competent privind înmatricularea/înregistrarea/radierea
+                mijloacelor de transport. Cartuşul C se completează de organul fiscal local de la domiciliul persoanei care a dobândit mijlocul de transport. Informatiile referitoare la transmiterea dreptului
+                de proprietate se comunica si se mentioneaza in Registrul national de evidenta a permiselor de conducere si a vehiculelor inmatriculate; aceasta mentiune nu produce efectul juridic al
+                transcrierii transmiterii dreptului de proprietate.
+            </p>
+        </div>
+        <p style="margin: 8px; text-align:justify; font-style: italic;">*** contracte.go.ro *** Document generat de contracte.go.ro. Platforma de documente digitale dezvoltata de Professor Prime S.R.L.</p>
     </div>
 </div>

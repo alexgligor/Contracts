@@ -49,11 +49,9 @@ namespace Contracts.Pages
         {
             if (!ModelState.IsValid)
             {
-                // If ModelState is not valid, redisplay the form with validation errors
                 return Page();
             }
             SessionsData.AddFinancialInfo(FInfo, SessionID);
-
             return RedirectToPage("/Contract", new { sessionid = SessionID });
         }
     }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Contracte</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Contracts.styles.css" asp-append-version="true" />
@@ -36,6 +36,11 @@
         }
     </style>
     <style>
+        .cursor-div {
+            text-align: center;
+            font-family: sans-serif;
+            margin: 1px 50px;
+        }
         .containerT {
             border-top: 4px solid #1693cc;
             display: flex;
@@ -85,13 +90,18 @@
             .link:hover::after {
                 background: #1693cc;
             }
+
+        .text-uppercase {
+            text-transform: uppercase;
+        }
+
     </style>
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Contracte</a>
+                <a class="navbar-brand" asp-area="" asp-page="/Index">🇷🇴 contracte.go.ro</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -101,9 +111,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Seller">Contract Auto</a>
                         </li>
-                        <li class="nav-item">
+                        @*<li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Test">Test</a>
-                        </li>
+                        </li>*@
                     </ul>
                 </div>
             </div>

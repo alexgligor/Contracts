@@ -28,5 +28,11 @@ namespace Contracts.Models
 
         [Required(ErrorMessage = "Câmpul Adresa este obligatoriu.")]
         public string Address { get; set; }
+
+        [Required(ErrorMessage = "Câmpul GDPR este obligatoriu.")]
+        public bool GDPR { get; set; }
+
+        [Required(ErrorMessage = "Câmpul GDPR este obligatoriu.")]
+        public string PostalCode { get; set; }
     }
 }
