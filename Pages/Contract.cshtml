@@ -10,7 +10,13 @@
         width: 210mm; /* Lățimea paginii A4 */
         margin-left: auto; /* Centralizează conținutul pe pagină */
         margin-right: auto; /* Centralizează conținutul pe pagină */
-        background-color: #fff; /* Culoarea de fundal a paginii */
+        background-color: #fff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.5);
+        z-index: 2; /* Acesta este pentru a plasa div-ul în prim plan */
     }
 
     .two, .three, .four, .five, .six, .seven, .eight, .nine {
@@ -154,7 +160,7 @@
 </div>
 
 <div class="text-center" style="padding:20px;">
-    <input type="button" id="btn_print" value="Salveaza ca PDF" class="btn btn-primary">
+    <input type="button" id="rep" value="Salveaza ca PDF" class="btn btn-info btn_print">
 </div>
 <div id="container_content">
     <div class="section one">

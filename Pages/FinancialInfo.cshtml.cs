@@ -10,24 +10,33 @@ namespace Contracts.Pages
         [BindProperty]
         public int Stage { get; set; } = 4;
 
-        private readonly ILogger<IndexModel> _logger;
-
-        private Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnvironment;
-
-
-        public FinancialInfoModel(ILogger<IndexModel> logger, Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnvironment)
-        {
-            _logger = logger;
-            this.hostingEnvironment = hostingEnvironment ?? throw new ArgumentNullException(nameof(hostingEnvironment));
-        }
-
         [BindProperty]
         public FinancialInfo FInfo { get; set; }
 
         public IActionResult OnGet()
         {
-            // Inițializați obiectul Person sau încărcați datele existente aici
-            FInfo = new FinancialInfo();
+            if (TempData.TryGetValue("SessionId", out object sessionId))
+            {
+                var sessionIdString = sessionId as string;
+                // Utilizarea obiectului "person"
+                var data = SessionsData.GetSesionData(sessionIdString);
+
+                FInfo = data.FinancialInfo;
+            }
+            else
+            {
+                FInfo = new FinancialInfo();
+#if DEBUG
+                FInfo = new FinancialInfo()
+                {
+                    Price = 5200,
+                    Currency = "EURO",
+                    Location = "Timisoara"
+                };
+
+#endif
+            }
+
             return Page();
         }
 

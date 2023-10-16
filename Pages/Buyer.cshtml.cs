@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Contracts.Models;
-using Newtonsoft.Json;
 
 namespace Contracts.Pages
 {
@@ -10,24 +9,39 @@ namespace Contracts.Pages
         [BindProperty]
         public int Stage { get; set; } = 2;
 
-        private readonly ILogger<IndexModel> _logger;
-
-        private Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnvironment;
-
-
-        public BuyerModel(ILogger<IndexModel> logger, Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnvironment)
-        {
-            _logger = logger;
-            this.hostingEnvironment = hostingEnvironment ?? throw new ArgumentNullException(nameof(hostingEnvironment));
-        }
-
         [BindProperty]
         public Person Person { get; set; }
 
         public IActionResult OnGet()
         {
-            // Inițializați obiectul Person sau încărcați datele existente aici
-            Person = new Person();
+            if (TempData.TryGetValue("SessionId", out object sessionId))
+            {
+                var sessionIdString = sessionId as string;
+                // Utilizarea obiectului "person"
+                var data = SessionsData.GetSesionData(sessionIdString);
+
+                Person = data.Buyer;
+            }
+            else
+            {
+                Person = new Person();
+
+            }
+#if DEBUG
+            Person = new Person()
+            {
+                FirstName = "Deian",
+                LastName = "Vigaru",
+                Email = "vigarudeaian@gmail.com",
+                Address = "Jud.Timis, Loc.Ghiroda, Str.Vulturilor, Nr.14 A",
+                Phone = "0745896532",
+                PersonalIdentificationNumber = "1983234543745",
+                SerialCharacters = "TZ",
+                SerialNumber = "458695"
+            };
+
+#endif
+
             return Page();
         }
 

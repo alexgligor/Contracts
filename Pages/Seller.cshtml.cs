@@ -27,9 +27,36 @@ namespace Contracts.Pages
 
         public IActionResult OnGet()
         {
-            // Inițializați obiectul Person sau încărcați datele existente aici
-            Person = new Person();
+
+            // Extracție
+            if (TempData.TryGetValue("SessionId", out object sessionId))
+            {
+                var sessionIdString = sessionId as string;
+                // Utilizarea obiectului "person"
+                var data = SessionsData.GetSesionData(sessionIdString);
+
+                Person = data.Seller;
+            }
+            else
+            {
+                Person = new Person();
+#if DEBUG
+                Person = new Person()
+                {
+                    FirstName = "Alex",
+                    LastName = "Gligor",
+                    Email = "alexgligor@gmail.com",
+                    Address = "Jud.Timis, Loc.Giarmata, Str.Primaverii, Nr.90",
+                    Phone = "0744138843",
+                    PersonalIdentificationNumber = "1910302012345",
+                    SerialCharacters = "TZ",
+                    SerialNumber = "905656"
+                };
+#endif
+            }
+
             return Page();
+            
         }
 
        
