@@ -35,6 +35,57 @@
             cursor: pointer;
         }
     </style>
+    <style>
+        .containerT {
+            border-top: 4px solid #1693cc;
+            display: flex;
+            list-style: none;
+            padding: 0;
+            justify-content: space-between;
+            align-items: stretch;
+            align-content: stretch;
+        }
+
+        .link {
+            position: relative;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+            .link a {
+                font-weight: bold;
+                text-decoration: none;
+                color: #1693cc;
+                text-transform: uppercase;
+                font-size: 12px;
+            }
+
+            .link:first-child {
+                margin-left: -55px;
+            }
+
+            .link:last-child {
+                margin-right: -55px;
+            }
+
+            .link::after {
+                content: "";
+                width: 30px;
+                height: 30px;
+                background: #fff;
+                position: absolute;
+                border-radius: 20px;
+                top: -28px;
+                left: 50%;
+                transform: translatex(-50%);
+                border: 4px solid #1693cc;
+            }
+
+            .active::after,
+            .link:hover::after {
+                background: #1693cc;
+            }
+    </style>
 </head>
 <body>
     <header>
@@ -47,9 +98,6 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Seller">Contract Auto</a>
                         </li>
