@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contracts", "Contracts.csproj", "{A9141CEE-003C-481C-8153-8A39C0650838}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "..\Test\Test.csproj", "{9FD74608-A35E-4F92-86FC-38340C5D6266}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "..\Test\Test.csproj", "{9FD74608-A35E-4F92-86FC-38340C5D6266}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
