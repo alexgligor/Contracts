@@ -41,14 +41,13 @@ namespace Contracts.Pages
                 return Page();
             }
 
-            TempData["Buyer"] = JsonConvert.SerializeObject(Person);
-
             
             // Extracție
-            if (TempData.TryGetValue("Seller", out object personData))
+            if (TempData.TryGetValue("SessionId", out object sessionId))
             {
-                var person = JsonConvert.DeserializeObject<Person>(personData as string);
+                var sessionIdString = sessionId as string;
                 // Utilizarea obiectului "person"
+                SessionsData.AddBuyer(Person, sessionIdString);
             }
 
             return Redirect("/CarInfo");

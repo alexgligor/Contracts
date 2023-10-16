@@ -6,15 +6,17 @@ namespace Contracts.Pages
 {
     public class ContractModel : PageModel
     {
-        public Person Person { get; set; }  
+        public CarContractData CarContractData { get; set; }
+
 
         public void OnGet()
         {
-            // Extracție
-            if (TempData.TryGetValue("Seller", out object personData))
+            if (TempData.TryGetValue("SessionId", out object sessionId))
             {
-                Person = JsonConvert.DeserializeObject<Person>(personData as string);
+                var sessionIdString = sessionId as string;
                 // Utilizarea obiectului "person"
+                CarContractData = SessionsData.GetSesionData(sessionIdString);
+                
             }
         }
     }

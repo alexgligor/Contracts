@@ -35,13 +35,9 @@ namespace Contracts.Pages
        
         public IActionResult OnPost()
         {
-            if (!ModelState.IsValid)
-            {
-                // If ModelState is not valid, redisplay the form with validation errors
-                return Page();
-            }
-
-            TempData["Seller"] = JsonConvert.SerializeObject(Person);
+            var sessionId = new Random().Next(1, 100000).ToString();
+            SessionsData.AddSeller(Person, sessionId);
+            TempData["SessionId"] = sessionId;
             return Redirect("/Buyer");
         }
     }
