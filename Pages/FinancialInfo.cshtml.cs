@@ -7,6 +7,13 @@ namespace Contracts.Pages
 {
     public class FinancialInfoModel : PageModel
     {
+        IRootService rootService;
+
+        public FinancialInfoModel(IRootService rootService)
+        {
+            this.rootService= rootService;
+        }
+
         [BindProperty]
         public int Stage { get; set; } = 4;
 
@@ -52,6 +59,7 @@ namespace Contracts.Pages
                 return Page();
             }
             SessionsData.AddFinancialInfo(FInfo, SessionID);
+            rootService.Save(SessionsData.GetSesionData(SessionID));
             return RedirectToPage("/Contract", new { sessionid = SessionID });
         }
     }

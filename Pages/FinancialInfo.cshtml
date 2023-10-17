@@ -9,7 +9,7 @@
     /* Stil pentru zona de semnare */
     #signature-pad {
         border: 1px solid gray;
-        width: 500px;
+        width: 400px;
         background-color: #fff;
         margin: 10px;
     }
@@ -26,8 +26,8 @@
         align-items: center;
     }
 </style>
-<div style="text-align: center;font-family: sans-serif;width: 400px;margin: 1px auto;">
-    <h3>Completarea Datelor</h3>
+<div class ="cursor-div">
+    <h3>Completarea Datelor Tranzactiei</h3>
     <br />
     <ul class="containerT">
         @if (Model.Stage == 1)
@@ -109,7 +109,7 @@
                     <label for="Price">Semnatura Vanzator</label>
 
                     <div id="signature-pad" class="signature-pad">
-                        <canvas id="signature-canvas" width="500" height="150"></canvas>
+                        <canvas id="signature-canvas" width="400" height="150"></canvas>
                     </div>
                     <button class="btn btn-dark" id="clear-button" type="button">Sterge</button>
                     <input type="hidden" asp-for="FInfo.SellerSignature" id="capturedImage" value="" />
@@ -121,7 +121,7 @@
 
 
                     <div id="signature-pad" class="signature-pad">
-                        <canvas id="signature-canvas2" width="500" height="150"></canvas>
+                        <canvas id="signature-canvas2" width="400" height="150"></canvas>
                     </div>
                     <button class="btn btn-dark" id="clear-button2" type="button">Sterge</button>
                     <input type="hidden" asp-for="FInfo.BuyerSignature" id="capturedImage2" value="" />
@@ -130,7 +130,7 @@
 
                 <br/>
                 <div class="text-center">
-                    <button class="btn btn-primary" id="save-button">Salvează Semnătura</button>
+                    <button class="btn btn-primary" id="save-button">Salvează date tranzactie</button>
                 </div>
             </form>
         </div>

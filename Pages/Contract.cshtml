@@ -99,7 +99,7 @@
 </script>
 
 <div class="cursor-div">
-    <h3>Completarea Datelor</h3>
+    <h5>Vizualizare Contract</h5>
     <br />
     <ul class="containerT">
         @if (Model.Stage == 1)
@@ -186,12 +186,11 @@
                 cu domiciliul/sediul în ROMÂNIA/ <b>@Model.CarContractData.Seller.Address </b>, codul poştal <b>@Model.CarContractData.Seller.PostalCode</b>,  identificat prin
                 B.I./C.I./C.I.P./Paşaport seria <b>@Model.CarContractData.Seller.SerialCharacters</b> nr. <b>@Model.CarContractData.Seller.SerialNumber</b>,
                 C.N.P./C.I.F4) <b>@Model.CarContractData.Seller.PersonalIdentificationNumber</b>, tel. <b>@Model.CarContractData.Seller.Phone</b>,
-                e-mail <b>@Model.CarContractData.Seller.Email</b>, şi domiciliul fiscal în ROMÂNIA/ ............, judeţul ...................., codul postal…………
-                municipiul / oraşul / comuna .............., satul/sectorul .................,
-                str. ......................., nr. ........, bl. ...., sc. ..., et. ......., ap .....,
-                reprezentată prin................ identificat prin B.I./C.I./C.I.P./Paşaport seria .. nr. .......,
-                C.I.F ........................., tel./fax...................., e-mail .................…,
-                în calitate de <b>proprietar</b>.
+                e-mail <b>@Model.CarContractData.Seller.Email</b>, şi domiciliul fiscal în ROMÂNIA/ ......., judeţul ...................., codul postal…………
+                municipiul / oraşul / comuna ......, satul/sectorul ......,
+                str. ........., nr. ..., bl..., sc. .., et...., ap ..,
+                reprezentată prin........ identificat prin B.I./C.I./C.I.P./Paşaport seria .. nr. ....,
+                C.I.F ............, tel./fax............., e-mail .........., în calitate de <b>proprietar</b>.
             </p>
         </div>
         <div class="section three">
@@ -200,20 +199,31 @@
                 cu domiciliul/sediul în ROMÂNIA/ <b>@Model.CarContractData.Buyer.Address </b>, codul poştal <b>@Model.CarContractData.Buyer.PostalCode</b>,  identificat prin
                 B.I./C.I./C.I.P./Paşaport seria <b>@Model.CarContractData.Buyer.SerialCharacters</b> nr. <b>@Model.CarContractData.Buyer.SerialNumber</b>,
                 C.N.P./C.I.F4) <b>@Model.CarContractData.Buyer.PersonalIdentificationNumber</b>, tel. <b>@Model.CarContractData.Buyer.Phone</b>,
-                e-mail <b>@Model.CarContractData.Buyer.Email</b>, şi domiciliul fiscal în ROMÂNIA/ ......., judeţul .................., codul postal…………
-                municipiul / oraşul / comuna ........................, satul/sectorul ...................,
-                str. ......................., nr. ....., bl. ......, sc. ...., et. ..., ap .....,
-                reprezentată prin................... identificat prin B.I./C.I./C.I.P./Paşaport seria ….... nr. ..............,
-                C.I.F ......................, tel./fax.............., e-mail …..................…,
+                e-mail <b>@Model.CarContractData.Buyer.Email</b>, şi domiciliul fiscal în ROMÂNIA/ ...., judeţul ........., codul postal……
+                municipiul / oraşul / comuna ...., satul/sectorul ..........,
+                str. ..........., nr. .., bl. .., sc. .., et. .., ap ....,
+                reprezentată prin............ identificat prin B.I./C.I./C.I.P./Paşaport seria ... nr. ....,
+                C.I.F ......., tel./fax......., e-mail ......…,
                 în calitate de <b>cumparator</b>.
             </p>
         </div>
         <div class="section four">
             <p style="font-weight: bold; margin:3px">(3) OBIECTUL CONTRACTULUI</p>
-            <p style="text-align:justify; margin: 3px">Mijlocul de transport: marca <b>@Model.CarContractData.Car.Name</b>, tipul <b>@Model.CarContractData.Car.Model</b>, număr de identificare <b>@Model.CarContractData.Car.VIN</b>, serie motor <b>@Model.CarContractData.Car.EngineSN</b>, capacitatea cilindrică <b>@Model.CarContractData.Car.EngineCCM</b> cm³, greutate maximă admisă (pentru remorci / semiremorci) <b>@Model.CarContractData.Car.Weight KG</b>, număr de înmatriculare/înregistrare <b>@Model.CarContractData.Car.PlateNumber</b>, data la care expiră inspecţia tehnică periodică <b>@Model.CarContractData.Car.LastInspection</b>,numărul cărţii de identitate a vehiculului ......., anul de fabricaţie <b>@Model.CarContractData.Car.FabricationYear</b>, norma euro <b>@Model.CarContractData.Car.EuroPolutionNorm</b> dobândit la data de <b>@Model.CarContractData.Car.AcquisitionDate</b>, conform act <b>@Model.CarContractData.Car.AcuisitionPaperName</b>.</p>
+            <p style="text-align:justify; margin: 3px">Mijlocul de transport: 
+                marca <b>@Model.CarContractData.Car.Name</b>, tipul <b>@Model.CarContractData.Car.Model</b>, 
+                număr de identificare <b>@Model.CarContractData.Car.VIN</b>, 
+                serie motor <b>@Model.CarContractData.Car.EngineSN</b>, 
+                capacitatea cilindrică <b>@Model.CarContractData.Car.EngineCCM</b> cm³, 
+                greutate maximă admisă (pentru remorci / semiremorci) <b>@Model.CarContractData.Car.Weight KG</b>, 
+                număr de înmatriculare/înregistrare <b>@Model.CarContractData.Car.PlateNumber</b>, 
+                data la care expiră inspecţia tehnică periodică <b>@Model.CarContractData.Car.LastInspection.ToShortDateString()</b>, 
+                numărul cărţii de identitate a vehiculului <b>@Model.CarContractData.Car.VehicleIdentityCardNumber</b>, anul de fabricaţie <b>@Model.CarContractData.Car.FabricationYear</b>, norma euro <b>@Model.CarContractData.Car.EuroPolutionNorm</b> dobândit la data de <b>@Model.CarContractData.Car.AcquisitionDate.ToShortDateString()</b>, conform act <b>@Model.CarContractData.Car.AcuisitionPaperName</b>.
+            </p>
         </div>
         <div class="section five">
-            <p style="margin:3px"><b>(4) PREŢUL</b> în cifre <b>@Model.CarContractData.FinancialInfo.Price</b> <b>@Model.CarContractData.FinancialInfo.Currency</b>, în litere <b>@Model.CarContractData.FinancialInfo.PriceAsString() @Model.CarContractData.FinancialInfo.Currency</b>.</p>
+            <p style="margin:3px"><b>(4) PREŢUL</b> în cifre <b>@Model.CarContractData.FinancialInfo.Price</b> 
+                <b>@Model.CarContractData.FinancialInfo.Currency</b>, 
+                în litere <b>@Model.CarContractData.FinancialInfo.PriceAsString() @Model.CarContractData.FinancialInfo.Currency</b>.</p>
         </div>
         <div class="section six">
             <p style="margin:3px; font-size:8px">
@@ -222,7 +232,7 @@
             </p>
             <p style="margin:3px; font-size:8px">Anexe la contract:  Da  Nu  </p>
             <p style="margin:3px; font-size:8px">Atât persoana care înstrăinează, cât şi dobânditorul declară, cunoscând prevederile Codului penal privind falsul şi uzul de fals că toate informaţiile înscrise în prezentul document corespund realităţii. Începând cu data semnării, dobânditorul are calitatea de proprietar de drept şi de fapt asupra mijlocului de transport ce face obiectul prezentului contract de înstrăinare-dobândire, preluând toate obligaţiile prevăzute de lege, inclusiv cele legate de transcrierea vehiculului pe numele sau, <b>în maxim 30 de zile, de la data încheierii prezentului act.</b> </p>
-            <p style="font-weight:bold; margin:3px;"> Data şi locul încheierii contractului: <b style="font-size:14px">@Model.CarContractData.FinancialInfo.Location/ @DateTime.Now.ToLongDateString()</b> </p>
+            <p style="font-weight:bold; margin:3px;"> Data şi locul încheierii contractului: <b style="font-size:14px">@Model.CarContractData.FinancialInfo.Location/ @DateTime.Now.ToShortDateString()</b> </p>
             <div style="display: flex;">
                 <div style="flex:1;">
                     <br />
