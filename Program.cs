@@ -1,10 +1,24 @@
+using Contracts.Models;
+using Contracts.Models.SQL;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+ //="Server=CPX-RMS80SJLM7T\\SQLEXPRESS02;initial catalog = contracte.go.ro; trusted_connection=true;TrustServerCertificate=True";
+var configFile =@"C:\Program Files\contracte.go.ro\connection_string.cfg";
+string connectionString = File.ReadAllText(configFile, System.Text.Encoding.UTF8);
+
+
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<DataBaseContext>(option => { option.UseSqlServer(connectionString); }, ServiceLifetime.Singleton);
 
+builder.Services.AddTransient<IRootService, RootService>();
+builder.Services.AddTransient<IContractService, ContractService>();
+builder.Services.AddTransient<ICarService, CarService>();
+builder.Services.AddTransient<IPersonService, PersonService>();
+builder.Services.AddTransient<IFinancialInfoService, FinancialInfoService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

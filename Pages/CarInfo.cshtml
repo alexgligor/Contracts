@@ -6,9 +6,7 @@
 }
 
 <div class="cursor-div">
-
-
-    <h3>Completarea Datelor</h3>
+    <h4>Completarea Datelor Vehicolului</h4>
     <br />
     <ul class="containerT">
         @if (Model.Stage == 1)
@@ -128,6 +126,10 @@
                     <input asp-for="Car.AcquisitionDate" type="date" class="form-control text-uppercase" id="acquisitionDate" value="2012-12-12">
                 </div>
                 <div class="form-group mb-3">
+                    <label for="vehicleIdentityCardNumber">Numar vartii de identitate a vehicolului</label>
+                    <input asp-for="Car.VehicleIdentityCardNumber" class="form-control text-uppercase" id="VehicleIdentityCardNumber" placeholder="RO1034">
+                </div>
+                <div class="form-group mb-3">
                     <label for="acuisitionPaperName">Numele actului de achiziție</label>
                     <select asp-for="Car.AcuisitionPaperName" class="form-control text-uppercase" id="acuisitionPaperName">
                         <option value="Contract Vanzare-Cumparare" selected>Contract Vanzare-Cumparare</option>
@@ -143,7 +145,7 @@
                 </div>
 
                 <div class="text-center">
-    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="submit" class="btn btn-primary">Salveaza date vehicol</button>
 </div>
             </form>
         </div>
