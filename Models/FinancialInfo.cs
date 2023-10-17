@@ -1,16 +1,29 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Contracts.Models.SQL;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Net;
 
 namespace Contracts.Models
 {
     public class FinancialInfo
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+        public int ContractId { get; set; }
+
         [Required(ErrorMessage = "Câmpul Pret este obligatoriu.")]
         public int Price { get; set; }
 
+        private string location;
         public string Currency { get; set; }
 
+
         [Required(ErrorMessage = "Câmpul Locatie este obligatoriu.")]
-        public string Location { get; set; }
+        public string Location
+        {
+            get { return location; }
+            set { location = value?.ToUpper(); }
+        }
 
         public string SellerSignature { get; set; }
 
@@ -92,5 +105,26 @@ namespace Contracts.Models
         }
 
 
+    }
+
+    public interface IFinancialInfoService
+    {
+        void Add(FinancialInfo data);
+    }
+
+    public class FinancialInfoService : IFinancialInfoService
+    {
+        private readonly DataBaseContext _context;
+        public FinancialInfoService(DataBaseContext context)
+        {
+            _context = context;
+            _context.Database.EnsureCreated();
+        }
+
+        public void Add(FinancialInfo data)
+        {
+            _context.FinancialInfo.Add(data);
+            _context.SaveChanges();
+        }
     }
 }

@@ -10,24 +10,44 @@ namespace Contracts.Pages
         [BindProperty]
         public int Stage { get; set; } = 3;
 
-        private readonly ILogger<IndexModel> _logger;
-
-        private Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnvironment;
-
-
-        public CarInfoModel(ILogger<IndexModel> logger, Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnvironment)
-        {
-            _logger = logger;
-            this.hostingEnvironment = hostingEnvironment ?? throw new ArgumentNullException(nameof(hostingEnvironment));
-        }
-
         [BindProperty]
         public Car Car { get; set; }
 
-        public IActionResult OnGet()
+        [BindProperty]
+        public String SessionID { get; set; }
+
+        public IActionResult OnGet(string sessionid)
         {
-            // Inițializați obiectul Person sau încărcați datele existente aici
-            Car = new Car();
+            SessionID = sessionid;
+
+            var data = SessionsData.GetSesionData(sessionid);
+            if (data == null)
+            { 
+                Car = data.Car;
+            }
+            else
+            {
+                Car = new Car();
+
+            }
+#if DEBUG
+            Car = new Car()
+            {
+                Name = "BMW",
+                Model = "X5",
+                VIN = "BM345DF556743547543",
+                PlateNumber = "TM11BNF",
+                EngineSN = "RT456G",
+                EngineCCM = 2245,
+                EuroPolutionNorm = 5,
+                AcquisitionDate = DateTime.Now,
+                AcuisitionPaperName = "",
+                FabricationYear = 2019,
+                LastInspection = DateTime.Now,
+                Weight = 2000
+            };
+
+#endif
             return Page();
         }
 
@@ -40,15 +60,9 @@ namespace Contracts.Pages
                 return Page();
             }
 
-            // Extracție
-            if (TempData.TryGetValue("SessionId", out object sessionId))
-            {
-                var sessionIdString = sessionId as string;
-                // Utilizarea obiectului "person"
-                SessionsData.AddCarInfo(Car, sessionIdString);
-            }
+            SessionsData.AddCarInfo(Car, SessionID);
 
-            return Redirect("/FinancialInfo");
+            return RedirectToPage("/FinancialInfo", new { sessionid = SessionID });
         }
     }
 }

@@ -5,60 +5,8 @@
     ViewData["Title"] = "Home page";
 }
 
-<style>
-    .containerT {
-        border-top: 4px solid #1693cc;
-        display: flex;
-        list-style: none;
-        padding: 0;
-        justify-content: space-between;
-        align-items: stretch;
-        align-content: stretch;
-    }
-
-    .link {
-        position: relative;
-        margin-top: 10px;
-        width: 100%;
-    }
-
-        .link a {
-            font-weight: bold;
-            text-decoration: none;
-            color: #1693cc;
-            text-transform: uppercase;
-            font-size: 12px;
-        }
-
-        .link:first-child {
-            margin-left: -55px;
-        }
-
-        .link:last-child {
-            margin-right: -55px;
-        }
-
-        .link::after {
-            content: "";
-            width: 30px;
-            height: 30px;
-            background: #fff;
-            position: absolute;
-            border-radius: 20px;
-            top: -28px;
-            left: 50%;
-            transform: translatex(-50%);
-            border: 4px solid #1693cc;
-        }
-
-        .active::after,
-        .link:hover::after {
-            background: #1693cc;
-        }
-</style>
-<div style="text-align: center;font-family: sans-serif;width: 500px;margin: 1px auto;">
-
-    <h3>Completarea Datelor</h3>
+<div class="cursor-div">
+    <h4>Completarea Datelor Vehicolului</h4>
     <br />
     <ul class="containerT">
         @if (Model.Stage == 1)
@@ -115,49 +63,49 @@
             <form method="post">
                 <div class="form-group mb-3">
                     <label for="name">Nume</label>
-                    <input asp-for="Car.Name" class="form-control" id="name" placeholder="BMW">
+                    <input asp-for="Car.Name" class="form-control text-uppercase" id="name" placeholder="BMW">
                     <span asp-validation-for="Car.Name" class="text-danger"></span>
 
                 </div>
                 <div class="form-group mb-3">
                     <label for="model">Model</label>
-                    <input asp-for="Car.Model" class="form-control" id="model" placeholder="X5">
+                    <input asp-for="Car.Model" class="form-control text-uppercase" id="model" placeholder="X5">
                     <span asp-validation-for="Car.Model" class="text-danger"></span>
 
                 </div>
                 <div class="form-group mb-3">
                     <label for="vin">VIN</label>
-                    <input asp-for="Car.VIN" class="form-control" id="vin" placeholder="SDF456DD567786">
+                    <input asp-for="Car.VIN" class="form-control text-uppercase" id="vin" placeholder="SDF456DD567786">
                     <span asp-validation-for="Car.VIN" class="text-danger"></span>
 
                 </div>
                 <div class="form-group mb-3">
                     <label for="engineSN">Număr motor</label>
-                    <input asp-for="Car.EngineSN" class="form-control" id="engineSN" placeholder="1234RF5">
+                    <input asp-for="Car.EngineSN" class="form-control text-uppercase" id="engineSN" placeholder="1234RF5">
                     <span asp-validation-for="Car.EngineSN" class="text-danger"></span>
 
                 </div>
                 <div class="form-group mb-3">
-                    <label for="engineCCM">Capacitate motor (CCM)</label>
-                    <input asp-for="Car.EngineCCM" class="form-control" id="engineCCM" placeholder="2200">
+                    <label for="engineCCM">Capacitate motor (cm³)</label>
+                    <input asp-for="Car.EngineCCM" class="form-control text-uppercase" id="engineCCM" placeholder="2200">
                     <span asp-validation-for="Car.EngineSN" class="text-danger"></span>
 
                 </div>
                 <div class="form-group mb-3">
                     <label for="weight">Greutate</label>
-                    <input asp-for="Car.Weight" class="form-control" id="weight" placeholder="1890">
+                    <input asp-for="Car.Weight" class="form-control text-uppercase" id="weight" placeholder="1890">
                     <span asp-validation-for="Car.Weight" class="text-danger"></span>
 
                 </div>
                 <div class="form-group mb-3">
                     <label for="fabricationYear">An de fabricație</label>
-                    <input asp-for="Car.FabricationYear" class="form-control" id="fabricationYear" placeholder="2020">
+                    <input asp-for="Car.FabricationYear" class="form-control text-uppercase" id="fabricationYear" placeholder="2020">
                     <span asp-validation-for="Car.FabricationYear" class="text-danger"></span>
 
                 </div>
                 <div class="form-group mb-3">
                     <label for="euroPolutionNorm">Normă de poluare Euro</label>
-                    <select asp-for="Car.EuroPolutionNorm" class="form-control" id="euroPolutionNorm">
+                    <select asp-for="Car.EuroPolutionNorm" class="form-control text-uppercase" id="euroPolutionNorm">
                         <option value="7">EURO 7</option>
                         <option value="6">EURO 6</option>
                         <option value="5" selected>EURO 5</option>
@@ -171,15 +119,19 @@
 
                 <div class="form-group mb-3">
                     <label for="lastInspection">Ultima inspecție</label>
-                    <input asp-for="Car.LastInspection" type="date" class="form-control" id="lastInspection" value="2022-12-12">
+                    <input asp-for="Car.LastInspection" type="date" class="form-control text-uppercase" id="lastInspection" value="2022-12-12">
                 </div>
                 <div class="form-group mb-3">
                     <label for="acquisitionDate">Data achiziției</label>
-                    <input asp-for="Car.AcquisitionDate" type="date" class="form-control" id="acquisitionDate" value="2012-12-12">
+                    <input asp-for="Car.AcquisitionDate" type="date" class="form-control text-uppercase" id="acquisitionDate" value="2012-12-12">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="vehicleIdentityCardNumber">Numar vartii de identitate a vehicolului</label>
+                    <input asp-for="Car.VehicleIdentityCardNumber" class="form-control text-uppercase" id="VehicleIdentityCardNumber" placeholder="RO1034">
                 </div>
                 <div class="form-group mb-3">
                     <label for="acuisitionPaperName">Numele actului de achiziție</label>
-                    <select asp-for="Car.AcuisitionPaperName" class="form-control" id="acuisitionPaperName">
+                    <select asp-for="Car.AcuisitionPaperName" class="form-control text-uppercase" id="acuisitionPaperName">
                         <option value="Contract Vanzare-Cumparare" selected>Contract Vanzare-Cumparare</option>
                         <option value="Decizie Judecatoreasca">Decizie Judecatoreasca</option>
                         <option value="Testament Mostenitor">Testament Mostenitor</option>
@@ -188,11 +140,13 @@
                     </select>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="lateNumber">numar de inmatriculare</label>
-                    <input asp-for="Car.PlateNumber" class="form-control" id="plateNumber" placeholder="TM12RTY">
+                    <label for="lateNumber">Numar de inmatriculare</label>
+                    <input asp-for="Car.PlateNumber" class="form-control text-uppercase" id="plateNumber" placeholder="TM12RTY">
                 </div>
 
-                <button type="submit" class="btn btn-primary">Salvează</button>
+                <div class="text-center">
+    <button type="submit" class="btn btn-primary">Salveaza date vehicol</button>
+</div>
             </form>
         </div>
     </div>

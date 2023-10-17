@@ -2,16 +2,27 @@
 @addTagHelper*, Microsoft.AspNetCore.Mvc
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+  //  ViewData["Title"] = "Contracte";
 }
 
+<style>
+    #container {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
 
+    button {
+        padding: 10px 20px;
+    }
+</style>
 
-
-<div class="text-center">
-
-    <a href="@Url.Page("Index","DownloadFile")" download="Contract.pdf">
-        <button>Descarcă Document</button>
-    </a>
+<div id="container">
+    <h1>Generează Documente</h1>
+    <br />
+    <br />
+    <button class="btn btn-primary" type="button" onclick="window.location.href='/Seller'">🚗<br /> Contract Auto <br /> Vânzare-Cumpărare <br />.</button>
 </div>
-

@@ -3,157 +3,27 @@
 @{
     Layout = null;
 }
+<!DOCTYPE html>
 <html>
 <head>
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> 	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" ></script>
-
- 
-
-	<script>
-	$(document).ready(function($) 
-	{ 
-
-		$(document).on('click', '.btn_print', function(event) 
-		{
-			console.log("start converting")
-			event.preventDefault();
-
-			//credit : https://ekoopmans.github.io/html2pdf.js
-			
-			var element = document.getElementById('container_content'); 
-
-			//easy
-			//html2pdf().from(element).save();
-
-			//custom file name
-			//html2pdf().set({filename: 'contract_'+js.AutoCode()+'.pdf'}).from(element).save();
-
-
-			////more custom settings
-			var opt = 
-			{
-			  margin:       0,
-			  filename:     'pageContent.pdf',
-			  image:        { type: 'jpeg', quality: 0.98 },
-			  html2canvas:  { scale: 2 },
-			  jsPDF:        { unit: 'in', format: 'A4', orientation: 'portrait' }
-			};
-
-			//// New Promise-based usage:
-			html2pdf().set(opt).from(element).save();
-
-			 
-		});
-
- 
- 
-	});
-	</script>
-
-	 
-
+    <style>
+        .box {
+            height: 297mm; /* Înălțimea paginii A4 */
+            width: 210mm; /* Lățimea paginii A4 */
+            margin-left: auto; /* Centralizează conținutul pe pagină */
+            margin-right: auto; /* Centralizează conținutul pe pagină */
+            background-color: #fff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+            z-index: 1; /* Acesta este pentru a plasa div-ul în prim plan */
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-
-<div class="text-center" style="padding:20px;">
-	<input type="button" id="rep" value="Print" class="btn btn-info btn_print">
-</div>
-
-
-<div class="container_content" id="container_content" >
-		
-
-		<div class="invoice-box">
-
-	
-
-			<table cellpadding="0" cellspacing="0" >
-				<tr class="top">
-					<td colspan="2">
-						<table>
-							<tr>
-								<td class="title">
-									<img src="<?php echo $app_url?>/any.png" style="width: 100%; max-width: 300px" />
-								</td>
-
-								<td>
-									Invoice #: 123<br />
-									Created: January 1, 2015<br />
-									Due: February 1, 2015
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-
-				<tr class="information">
-					<td colspan="2">
-						<table>
-							<tr>
-								<td>
-									Sparksuite, Inc.<br />
-									12345 Sunny Road<br />
-									Sunnyville, CA 12345
-								</td>
-
-								<td>
-									Acme Corp.<br />
-									John Doe<br />
-									john@example.com
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-
-				<tr class="heading">
-					<td>Payment Method</td>
-
-					<td>Check #</td>
-				</tr>
-
-				<tr class="details">
-					<td>Check</td>
-
-					<td>1000</td>
-				</tr>
-
-				<tr class="heading">
-					<td>Item</td>
-
-					<td>Price</td>
-				</tr>
-
-				<tr class="item">
-					<td>Website design</td>
-
-					<td>$300.00</td>
-				</tr>
-
-				<tr class="item">
-					<td>Hosting (3 months)</td>
-
-					<td>$75.00</td>
-				</tr>
-
-				<tr class="item last">
-					<td>Domain name (1 year)</td>
-
-					<td>$10.00</td>
-				</tr>
-
-				<tr class="total">
-					<td></td>
-
-					<td>Total: $385.00</td>
-				</tr>
-			</table>
-		</div>
-</div>
-
-
-
+    <div id="myDiv" class="box"></div>
 </body>
 </html>

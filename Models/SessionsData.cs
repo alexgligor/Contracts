@@ -1,4 +1,6 @@
-﻿namespace Contracts.Models
+﻿using Microsoft.EntityFrameworkCore.Diagnostics;
+
+namespace Contracts.Models
 {
     public static class SessionsData
     {
@@ -6,13 +8,14 @@
 
         public static void AddSeller(Person person, string sessionId)
         {
-            if(!SessionDataList.ContainsKey(sessionId))
+            if (!SessionDataList.ContainsKey(sessionId))
             {
+                person.isSeller = true;
                 SessionDataList.Add(sessionId, new CarContractData() { Seller = person });
                 return;
             }
 
-            SessionDataList[sessionId].Seller = person;           
+            SessionDataList[sessionId].Seller = person;
         }
 
         public static void AddBuyer(Person person, string sessionId)
@@ -46,6 +49,7 @@
             }
 
             SessionDataList[sessionId].FinancialInfo = finfo;
+
         }
 
         public static CarContractData GetSesionData(string sessionId) 

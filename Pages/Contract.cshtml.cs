@@ -1,4 +1,5 @@
 ﻿using Contracts.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
 
@@ -8,16 +9,12 @@ namespace Contracts.Pages
     {
         public CarContractData CarContractData { get; set; }
 
+        [BindProperty]
+        public int Stage { get; set; } = 5;
 
-        public void OnGet()
+        public void OnGet(string sessionid)
         {
-            if (TempData.TryGetValue("SessionId", out object sessionId))
-            {
-                var sessionIdString = sessionId as string;
-                // Utilizarea obiectului "person"
-                CarContractData = SessionsData.GetSesionData(sessionIdString);
-                
-            }
+            CarContractData = SessionsData.GetSesionData(sessionid);
         }
     }
 }

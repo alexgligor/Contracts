@@ -7,27 +7,47 @@ namespace Contracts.Pages
 {
     public class FinancialInfoModel : PageModel
     {
+        IRootService rootService;
+
+        public FinancialInfoModel(IRootService rootService)
+        {
+            this.rootService= rootService;
+        }
+
         [BindProperty]
         public int Stage { get; set; } = 4;
-
-        private readonly ILogger<IndexModel> _logger;
-
-        private Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnvironment;
-
-
-        public FinancialInfoModel(ILogger<IndexModel> logger, Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnvironment)
-        {
-            _logger = logger;
-            this.hostingEnvironment = hostingEnvironment ?? throw new ArgumentNullException(nameof(hostingEnvironment));
-        }
 
         [BindProperty]
         public FinancialInfo FInfo { get; set; }
 
-        public IActionResult OnGet()
+
+        [BindProperty]
+        public String SessionID { get; set; }
+
+        public IActionResult OnGet(string sessionid)
         {
-            // Inițializați obiectul Person sau încărcați datele existente aici
-            FInfo = new FinancialInfo();
+            SessionID = sessionid;
+
+            var data = SessionsData.GetSesionData(sessionid);
+            if (data == null)
+            { 
+
+                FInfo = data.FinancialInfo;
+            }
+            else
+            {
+                FInfo = new FinancialInfo();
+#if DEBUG
+                FInfo = new FinancialInfo()
+                {
+                    Price = 5200,
+                    Currency = "EURO",
+                    Location = "Timisoara"
+                };
+
+#endif
+            }
+
             return Page();
         }
 
@@ -36,17 +56,11 @@ namespace Contracts.Pages
         {
             if (!ModelState.IsValid)
             {
-                // If ModelState is not valid, redisplay the form with validation errors
                 return Page();
             }
-
-            if (TempData.TryGetValue("SessionId", out object sessionId))
-            {
-                var sessionIdString = sessionId as string;
-                // Utilizarea obiectului "person"
-                SessionsData.AddFinancialInfo(FInfo, sessionIdString);
-            }
-            return Redirect("/Contract");
+            SessionsData.AddFinancialInfo(FInfo, SessionID);
+            rootService.Save(SessionsData.GetSesionData(SessionID));
+            return RedirectToPage("/Contract", new { sessionid = SessionID });
         }
     }
 }
