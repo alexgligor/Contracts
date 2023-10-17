@@ -1,11 +1,13 @@
 ﻿using Contracts.Models.SQL;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Contracts.Models
 {
     public class Car
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int ContractId { get; set; }
         private string name;

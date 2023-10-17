@@ -8,12 +8,12 @@
     {
         ICarService carService;
         IPersonService personService;
-        ICarContractDataService contractService;
+        IContractService contractService;
         IFinancialInfoService financialService;
 
         public RootService(ICarService carService,
         IPersonService personService,
-        ICarContractDataService contractService,
+        IContractService contractService,
         IFinancialInfoService financialService)
         {
             this.carService = carService;
@@ -24,7 +24,7 @@
 
         public void Save(CarContractData data)
         {
-            var contract = contractService.Add(data);
+            var contract = contractService.Add();
             data.Car.ContractId = contract.Id;
             data.Seller.ContractId= contract.Id;
             data.Buyer.ContractId= contract.Id;

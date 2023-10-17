@@ -1,37 +1,42 @@
 ﻿using Contracts.Models.SQL;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Contracts.Models
 {
-    public class CarContractData
-    {
+    public class Contract {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public DateTime Created { get; set; }   
+        public DateTime Created { get; set; }
+    }
+
+    public class CarContractData
+    { 
         public Car Car { get; set; }
         public FinancialInfo FinancialInfo { get; set; }
         public Person Seller { get; set; }
         public Person Buyer { get; set; }
     }
 
-    public interface ICarContractDataService
+    public interface IContractService
     {
-        CarContractData Add(CarContractData data);
+        Contract Add();
     }
 
-    public class CarContractDataService: ICarContractDataService
+    public class ContractService: IContractService
     {
         private readonly DataBaseContext _context;
-        public CarContractDataService(DataBaseContext context)
+        public ContractService(DataBaseContext context)
         {
             _context = context;
             _context.Database.EnsureCreated();
         }
 
-        public CarContractData Add(CarContractData data)
+        public Contract Add()
         {
-            data.Created= DateTime.Now;
+            var data = new Contract() { Created = DateTime.Now };
             _context.Contract.Add(data);
             _context.SaveChanges();
-        return data;
+                return data;
         }
     }
 }

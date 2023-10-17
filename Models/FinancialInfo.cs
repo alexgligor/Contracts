@@ -1,12 +1,13 @@
 ﻿using Contracts.Models.SQL;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Net;
 
 namespace Contracts.Models
 {
     public class FinancialInfo
     {
-
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int ContractId { get; set; }
 
