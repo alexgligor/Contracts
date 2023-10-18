@@ -45,4 +45,6 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 
+SessionsData.StartSessionDataCleanUp();
+
 app.Run();
