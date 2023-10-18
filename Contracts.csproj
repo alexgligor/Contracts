@@ -8,13 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="wwwroot\Files\Contract.pdf" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="wwwroot\Files\Contract.pdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    <None Include="wwwroot\Files\Images\contractvanzarecumpararemasina_imagine.png" />
   </ItemGroup>
 
   <ItemGroup>

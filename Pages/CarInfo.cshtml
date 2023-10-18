@@ -62,49 +62,70 @@
         <div class="col-md-6">
             <form method="post">
                 <div class="form-group mb-3">
-                    <label for="name">Nume</label>
-                    <input asp-for="Car.Name" class="form-control text-uppercase" id="name" placeholder="BMW">
+                    <div style="display:flex">
+                        <label for="name">Nume </label><small>-( D.1 )</small>
+                    </div>
+                    <input asp-for="Car.Name" class="form-control text-uppercase" id="name" placeholder="ex:BMW">
                     <span asp-validation-for="Car.Name" class="text-danger"></span>
 
                 </div>
                 <div class="form-group mb-3">
-                    <label for="model">Model</label>
-                    <input asp-for="Car.Model" class="form-control text-uppercase" id="model" placeholder="X5">
+                    <div style="display:flex">
+                        <label for="model">Model</label><small>-( D.2 )</small>
+                    </div>
+                    <input asp-for="Car.Model" class="form-control text-uppercase" id="model" placeholder="ex:X5">
                     <span asp-validation-for="Car.Model" class="text-danger"></span>
 
                 </div>
                 <div class="form-group mb-3">
-                    <label for="vin">VIN</label>
-                    <input asp-for="Car.VIN" class="form-control text-uppercase" id="vin" placeholder="SDF456DD567786">
+                    <div style="display:flex">
+                        <label for="vin">VIN</label><small>-( E )</small>
+                    </div>
+                    <input asp-for="Car.VIN" class="form-control text-uppercase" id="vin" placeholder="ex:WBAKS000X00H00000">
                     <span asp-validation-for="Car.VIN" class="text-danger"></span>
 
                 </div>
                 <div class="form-group mb-3">
-                    <label for="engineSN">Număr motor</label>
-                    <input asp-for="Car.EngineSN" class="form-control text-uppercase" id="engineSN" placeholder="1234RF5">
+                    <div style="display:flex">
+                        <label for="engineSN">Serie motor</label>
+                        <small>-( P.5 ) </small>
+                        <small style="font-size: 12px">- din cartea de identitate a vehicolului</small>
+                    </div>
+                    <input asp-for="Car.EngineSN" class="form-control text-uppercase" id="engineSN" placeholder="ex:00001212">
                     <span asp-validation-for="Car.EngineSN" class="text-danger"></span>
 
                 </div>
                 <div class="form-group mb-3">
-                    <label for="engineCCM">Capacitate motor (cm³)</label>
-                    <input asp-for="Car.EngineCCM" class="form-control text-uppercase" id="engineCCM" placeholder="2200">
+                    <div style="display:flex">
+                        <label for="engineCCM">Capacitate motor (cm³)</label>
+                        <small>-( P.1 )</small>
+                    </div>
+                    <input asp-for="Car.EngineCCM" class="form-control text-uppercase" id="engineCCM" placeholder="ex:1995">
                     <span asp-validation-for="Car.EngineSN" class="text-danger"></span>
-
                 </div>
                 <div class="form-group mb-3">
-                    <label for="weight">Greutate</label>
+                <div style="display:flex">
+                <label for="weight">Greutate</label><small>-( G )</small>
+        </div>
                     <input asp-for="Car.Weight" class="form-control text-uppercase" id="weight" placeholder="1890">
                     <span asp-validation-for="Car.Weight" class="text-danger"></span>
 
                 </div>
                 <div class="form-group mb-3">
-                    <label for="fabricationYear">An de fabricație</label>
-                    <input asp-for="Car.FabricationYear" class="form-control text-uppercase" id="fabricationYear" placeholder="2020">
+                    <div style="display:flex">
+                        <label for="fabricationYear">An de fabricație</label>
+                        <small>-( B )</small>
+                    </div>
+                    <input asp-for="Car.FabricationYear" class="form-control text-uppercase" id="fabricationYear" placeholder="ex:2020">
                     <span asp-validation-for="Car.FabricationYear" class="text-danger"></span>
 
                 </div>
                 <div class="form-group mb-3">
-                    <label for="euroPolutionNorm">Normă de poluare Euro</label>
+                    <div style="display:flex">
+                        <label for="euroPolutionNorm">Normă de poluare Euro</label>
+                        <small>-( 17. )</small>
+                        <small style="font-size: 12px">- din cartea de identitate a vehicolului</small>
+                    </div>
                     <select asp-for="Car.EuroPolutionNorm" class="form-control text-uppercase" id="euroPolutionNorm">
                         <option value="7">EURO 7</option>
                         <option value="6">EURO 6</option>
@@ -118,7 +139,10 @@
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="lastInspection">Ultima inspecție</label>
+                    <div style="display:flex">
+                        <label for="lastInspection">Data de expirare a I.T.P.</label>
+                        <small style="font-size: 12px"> - tabelul din pagina 3 a certificatului</small>
+                    </div>
                     <input asp-for="Car.LastInspection" type="date" class="form-control text-uppercase" id="lastInspection" value="2022-12-12">
                 </div>
                 <div class="form-group mb-3">
@@ -126,8 +150,11 @@
                     <input asp-for="Car.AcquisitionDate" type="date" class="form-control text-uppercase" id="acquisitionDate" value="2012-12-12">
                 </div>
                 <div class="form-group mb-3">
-                    <label for="vehicleIdentityCardNumber">Numar vartii de identitate a vehicolului</label>
-                    <input asp-for="Car.VehicleIdentityCardNumber" class="form-control text-uppercase" id="VehicleIdentityCardNumber" placeholder="RO1034">
+                    <div style="display:flex">
+                        <label for="vehicleIdentityCardNumber">Numarul cartii de identitate a vehicolului</label>
+                        <small style="font-size: 12px">-( Y )</small>
+                    </div>
+                    <input asp-for="Car.VehicleIdentityCardNumber" class="form-control text-uppercase" id="VehicleIdentityCardNumber" placeholder="ex:N000001">
                 </div>
                 <div class="form-group mb-3">
                     <label for="acuisitionPaperName">Numele actului de achiziție</label>
@@ -141,12 +168,12 @@
                 </div>
                 <div class="form-group mb-3">
                     <label for="lateNumber">Numar de inmatriculare</label>
-                    <input asp-for="Car.PlateNumber" class="form-control text-uppercase" id="plateNumber" placeholder="TM12RTY">
+                    <input asp-for="Car.PlateNumber" class="form-control text-uppercase" id="plateNumber" placeholder="ex:TM00PPM">
                 </div>
 
                 <div class="text-center">
-    <button type="submit" class="btn btn-primary">Salveaza date vehicol</button>
-</div>
+                    <button type="submit" class="btn btn-primary">Salveaza date vehicol</button>
+                </div>
             </form>
         </div>
     </div>

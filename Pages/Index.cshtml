@@ -2,7 +2,7 @@
 @addTagHelper*, Microsoft.AspNetCore.Mvc
 @model IndexModel
 @{
-  //  ViewData["Title"] = "Contracte";
+    //  ViewData["Title"] = "Contracte";
 }
 
 <style>
@@ -18,11 +18,35 @@
     button {
         padding: 10px 20px;
     }
+
+   .split {
+  width: 40%;
+  height: 2px; /* Înălțimea liniei de separare */
+  background-color: gray; /* Culoarea liniei */
+  margin:30px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.8); /* Umbrire pe orizontala */
+}
 </style>
 
 <div id="container">
     <h1>Generează Documente</h1>
     <br />
     <br />
-    <button class="btn btn-primary" type="button" onclick="window.location.href='/Seller'">🚗<br /> Contract Auto <br /> Vânzare-Cumpărare <br />.</button>
+    <div style="display: flex">
+        <button class="btn btn-primary" type="button" onclick="window.location.href='/Seller'">🚗<br /> Contract Auto <br /> Vânzare-Cumpărare <br />.</button>
+        <a href="/Seller">
+            <img src="~/Files/Images/contractvanzarecumpararemasina_imagine.png" style="margin: 0 0 0 69px" width="200px" height="150px" />
+
+        </a>
+    </div>
+
+    <div class="split"></div>
+
+    <div style="display: flex">
+        <button class="btn btn-primary" type="button" style="background-color: lightseagreen" onclick="window.location.href='/AccidentTBD'">🚗💥🚗<br /> Constatare amiabila <br />de accident<br />.</button>
+        <a href="/AccidentTBD">
+            <img src="~/Files/Images/constatareamiabiladeaccident.png" style="margin: 0 0 0 69px" width="200px" height="150px" />
+
+        </a>
+    </div>
 </div>

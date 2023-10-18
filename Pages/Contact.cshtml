@@ -1,0 +1,55 @@
+﻿@page
+@model Contracts.Pages.ContactModel
+<style>
+        
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+
+<div class="container">
+    <h1>Contact</h1>
+    <p>Asteptam feedback-ul tau.</p>
+
+    <form  method="POST">
+        <label for="name">Nume</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" required>
+
+        <label for="message">Mesaj</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+
+        <button type="submit">Trimite</button>
+    </form>
+</div>
+

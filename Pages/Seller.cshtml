@@ -142,9 +142,8 @@
                 </div>
 
                 <div class="form-group mb-3">
-                    <input asp-for="Person.GDPR" type="checkbox" class="form-check-input" id="GDPR" required="true">
-                    <label for="serialNumber" style="color: red;">***Sunteti de acord cu prelocrarea datelor (GDPR)</label>
-
+                    <input asp-for="Person.GDPR" type="checkbox" class="form-check-input" id="GDPR" required="true"> 
+                    <label for="serialNumber" style="color: red;">***Sunteti de acord cu prelocrarea datelor <a href="/GDPR">(GDPR)</a></label>
                     <span asp-validation-for="Person.GDPR" class="text-danger"></span>
                 </div>
 

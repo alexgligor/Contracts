@@ -8,6 +8,7 @@ namespace Contracts.Models.SQL
         public DbSet<Person> Person { get; set; }
         public DbSet<Contract> Contract { get; set; }
         public DbSet<FinancialInfo> FinancialInfo { get; set; }
+        public DbSet<Messages> Messages { get; set; }
 
         public DataBaseContext(DbContextOptions opt) : base(opt)
         {
