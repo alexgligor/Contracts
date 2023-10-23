@@ -1,0 +1,377 @@
+﻿
+
+    <style>
+        .A4Page {
+            height: 297mm; /* Înălțimea paginii A4 */
+            width: 210mm; /* Lățimea paginii A4 */
+            background-color: #fff;
+            margin: 20px auto; /* Margin auto pentru a centra pe orizontală și un spațiu de 20px deasupra butonului */
+            box-shadow: 15px 15px 10px 15px rgba(0, 0, 0, 0.5);
+            z-index: 2; /* Acesta este pentru a plasa div-ul în prim plan */
+        }
+
+        .top {
+            height: 35mm;
+            margin: 0;
+        }
+
+        .top_head {
+            height: 15mm;
+            display: flex;
+        }
+
+        .top_bottom {
+            height: 20mm;
+            margin: 0;
+        }
+
+        .margin {
+            margin: 0 10mm 0 10mm;
+        }
+
+        .middle {
+            height: 252mm;
+        }
+
+        .bottom {
+            height: 10mm;
+        }
+
+        .squere {
+            border: 0.1mm solid black;
+        }
+
+        p {
+            margin: 0 0 0 0;
+        }
+
+        small {
+            margin: 0 0 0 0;
+        }
+
+        .blue {
+            background-color: lightblue;
+        }
+
+        .yellow {
+            background-color: lightyellow;
+        }
+
+        small p {
+            font-size: 11px;
+        }
+
+        p {
+            font-size: 12px;
+        }
+    </style>
+
+    <div class="A4Page">
+        <div class="top margin">
+            <div class="top_head">
+                <div>
+                    <h3 style="margin:auto auto 0 auto">CONSTATARE AMIABILĂ DE ACCIDENT</h3>
+                    <p style="font-size:10px; margin:1px auto 1px auto">
+                        Nu constituie o recunoaștere a vinovăției, ci o descriere a
+                        <br />modului de producere a accidentului în vederea soluționării
+                        <br /> mai rapide a cererilor de despăgubiri,
+                    </p>
+                </div>
+                <div>
+                    <p style="margin:10mm auto auto 10mm">Se completează de către AMBI conducători auto</p>
+                </div>
+            </div>
+            <div class="top_bottom">
+                <div style="display: flex;">
+                    <div class="squere" style="width: 50mm; height: 9mm; display:flex">
+                        <div style="width:70%;">
+                            <small>
+                                <b>1.Data</b> accidentului
+                                <br /><b>10/12/2023</b>
+                            </small>
+                        </div>
+                        <div>
+                            <small>
+                                Ora:
+                                <br /><b>18:30</b>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="squere" style="width: 90mm; height: 9mm ">
+                        <small><b>2.Loc</b> accidentului</small>
+                    </div>
+                    <div class="squere" style="width: 50mm; height: 9mm ">
+                        <small><b>3.Răniți?</b>(chiar și ușor)</small>
+                    </div>
+                </div>
+                <div style="display: flex;">
+                    <div class="squere" style="width: 50mm; height: 9mm">
+                        <small><b>4.Daune Materiale</b> altele decât vehiculele A și B</small>
+                    </div>
+                    <div class="squere" style="width: 140mm; height: 9mm ">
+                        <small><b>5.Martori </b>(nume, adresă, telefon - se subliniază pasagerii din A sau B)</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="middle margin">
+            <div style="display: flex; height:60%">
+                <div class="blue" style="width: 35%">
+                    <div class="squere" style="background-color: royalblue;">
+                        <center><b> VEHICOL -A-</b></center>
+                    </div>
+                    <div class="squere">
+                        <p>
+                            <b>6.Asigurat</b>(vezi doc. asigurare)
+                            <br />Numele:<b>Popescu</b>
+                            <br />Prenumele:<b>Florin</b>
+                            <br />Adresa:<b>București, Sectorul 4, Str.Demetriade, nr.16 Ap.1,Sc.1</b>
+                            <br />Cod postal:<b>309876 </b> Țara: <b>România</b>
+                            <br />Tel./Email:<b>0756435654</b>
+                        </p>
+                    </div>
+                    <div class="squere">
+                        <p><b>7.Vehicul</b></p>
+                        <div style="display:flex">
+                            <div class="squere" style="width:50%">
+                                <div class="squere">
+                                    <center><p>CU MOTOR</p></center>
+                                </div>
+                                <div>
+                                    <p>
+                                        Marca, tip
+                                        <br /><b>VW,Passat</b>
+                                        <br />Număr de înmatriculare:
+                                        <br /><b>TM45TGH</b>
+                                        <br />Țara:<b>România</b>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="squere" style="width:50%">
+                                <div class="squere">
+                                    <center><p>CU REMORCA</p> </center>
+                                </div>
+                                <div>
+                                    <p>
+                                        <br />Număr de înmatriculare:
+                                        <br /><b>TM45TGH</b>
+                                        <br />Țara:<b>România</b>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="squere">
+                        <p>
+                            <b>8.Societate de asigurare</b>(vezi doc. asigurare)
+                            <br />Denumire:<b>OmniAsig</b>
+                            <br />Polita nr.:<b>12334455</b>
+                            <br />Carte verde nr.:<b>234463453</b>
+                            <br />Polita de asigurare sau Carte verde cu valabilitate <b>Da</b> de la <b>12/12/2022</b> până la <b>12/12/2023</b>
+                            <br />Sucursala:<b>Omnimiasig SRL</b>
+                            <br />DENUMIRE:<b>OmniAsig SRL</b>
+                            <br />Adresa:<b>București, Sectorul 4, Str.Demetriade, nr.16 Ap.1,Sc.1</b> Țara:<b>România</b>
+                            <br />Tel.sau email:<b>omniAsig@asigurare.com</b>
+                            <br />Daunele materiale ale vehiculului sunt acoperite printr-o poliță CASCO? :<b>DA</b>
+                        </p>
+                    </div>
+                    <div class="squere">
+                        <p>
+                            <b>9.Conducătorul vehiculului</b>(permis conducere)
+                            <br />Numele:<b>Popescu</b>
+                            <br />Prenumele:<b>Florin</b>
+                            <br />Data nașterii:<b>02/03/1992</b>
+                            <br />Adresa:<b>București, Sectorul 4, Str.Demetriade, nr.16 Ap.1,Sc.1</b> Țara: <b>România</b>
+                            <br />Tel./Email:<b>0756435654</b>
+                            <br />Permis de conducere nr.:<b>123456</b>
+                            <br />Categoria:<b>A,B</b>
+                            <br />Valabil până la:<b>02/03/2032</b>
+                        </p>
+                    </div>
+                </div>
+                <div style="width: 30%; height:100%">
+                    <div class="squere" style="height:90%">
+                        <div class="squere">
+                            <center><p>12.IMPREJURĂRI</p></center>
+                        </div>
+                        <div style="display:flex">
+                            <div style="width:15%"><center><b><h3>A</h3></b></center></div>
+                            <div>
+                                <center>
+                                    <p><b>Marcați cu X fiecare casuță utilă pentru explicarea desenului</b></p>
+                                    <p style="font-size:10px">*la pct.1 și 2 tăiați situația care nu corespunde</p>
+                                </center>
+                            </div>
+                            <div style="width:15%"><center><b><h3>B</h3></b></center></div>
+                        </div>
+                        <!-- aici vine un for loop -->
+                        <div style="display:flex">
+                            <div style="width:15%"><center><p>[X] 1</p></center></div>
+                            <div style="width:70%">
+                                <center>
+                                    <p>*în staționare/oprit</p>
+                                </center>
+                            </div>
+                            <div style="width:15%"><center><p>1 [ ] </p></center></div>
+                        </div>
+                    </div>
+                    <div style="height:5%">
+                        <center>
+                            <p style="font-size:7.3px">
+                                <b>Trebuie semnat de ambii conducători de vehicule</b>
+                                <br />Nu constituie o recunoaștere a responsabilității, ci un cumul de elemente și fapte
+                                care vor ajuta în soluționarea rapidă a cererii de despăgubire
+                            </p>
+                        </center>
+                    </div>
+                    <div style="height:5%">
+                        <div class="squere" style="height:50%;width:100%; display:flex">
+                            <div class="squere" style="background-color: lightgray; width: 7%"><p>13.</p></div>
+                            <div class="squere" style="width: 86%"><center><p style="font-size:7.5px"><b>Schița accidentului în momentul producerii impactului</b></p></center></div>
+                            <div class="squere" style="background-color:lightgray; width: 7%"><p>13.</p></div>
+                        </div>
+                        <div style="height:50%">
+                            <p style="font-size:5.7px">
+                                Indicați:
+                                1.pozitia drumului
+                                2.directia de deplasare a vehicolelor A,B prin săgeți
+                                3.pozitia vehicolelor in momentul impactului
+                                4.semnele de circulatie
+                                5.numele strazilor si a drumurilor
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="yellow" style="width: 35%">
+                    <div class="squere" style="background-color: yellowgreen;">
+                        <center><b> VEHICOL -B-</b></center>
+                    </div>
+                    <div class="squere">
+                        <p>
+                            <b>6.Asigurat</b>(vezi doc. asigurare)
+                            <br />Numele:<b>Popescu</b>
+                            <br />Prenumele:<b>Florin</b>
+                            <br />Adresa:<b>București, Sectorul 4, Str.Demetriade, nr.16 Ap.1,Sc.1</b>
+                            <br />Cod postal:<b>309876 </b> Țara: <b>România</b>
+                            <br />Tel./Email:<b>0756435654</b>
+                        </p>
+                    </div>
+                    <div class="squere">
+                        <p><b>7.Vehicul</b></p>
+                        <div style="display:flex">
+                            <div class="squere" style="width:50%">
+                                <div class="squere">
+                                    <center><p>CU MOTOR</p></center>
+                                </div>
+                                <div>
+                                    <p>
+                                        Marca, tip
+                                        <br /><b>VW,Passat</b>
+                                        <br />Număr de înmatriculare:
+                                        <br /><b>TM45TGH</b>
+                                        <br />Țara:<b>România</b>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="squere" style="width:50%">
+                                <div class="squere">
+                                    <center><p>CU REMORCA</p> </center>
+                                </div>
+                                <div>
+                                    <p>
+                                        <br />Număr de înmatriculare:
+                                        <br /><b>TM45TGH</b>
+                                        <br />Țara:<b>România</b>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="squere">
+                        <p>
+                            <b>8.Societate de asigurare</b>(vezi doc. asigurare)
+                            <br />Denumire:<b>Omniasig</b>
+                            <br />Polita nr.:<b>12334455</b>
+                            <br />Carte verde nr.:<b>234463453</b>
+                            <br />Polita de asigurare sau Carte verde cu valabilitate <b>Da</b> de la <b>12/12/2022</b> până la <b>12/12/2023</b>
+                            <br />Sucursala:<b>Omnimiasig SRL</b>
+                            <br />DENUMIRE:<b>Omnimiasig SRL</b>
+                            <br />Adresa:<b>București, Sectorul 4, Str.Demetriade, nr.16 Ap.1,Sc.1</b> Țara:<b>România</b>
+                            <br />Tel.sau email:<b>omiasig@asigurare.com</b>
+                            <br />Daunele materiale ale vehiculului sunt acoperite printr-o poliță CASCO? :<b>DA</b>
+                        </p>
+                    </div>
+                    <div class="squere">
+                        <p>
+                            <b>9.Conducătorul vehiculului</b>(permis conducere)
+                            <br />Numele:<b>Popescu</b>
+                            <br />Prenumele:<b>Florin</b>
+                            <br />Data nașterii:<b>02/03/1992</b>
+                            <br />Adresa:<b>București, Sectorul 4, Str.Demetriade, nr.16 Ap.1,Sc.1</b> Țara: <b>România</b>
+                            <br />Tel./Email:<b>0756435654</b>
+                            <br />Permis de conducere nr.:<b>123456</b>
+                            <br />Categoria:<b>A,B</b>
+                            <br />Valabil până la:<b>02/03/2032</b>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex; height: 30%;">
+                <div class="blue" style="width: 25%">
+                    <div class="squere">
+                        <p><b>10.Indicați punctul de impact inițial</b></p>
+                        <img height="190mm" width="100%" />
+                        <p>
+                            <b>11.Păgube vizibile la vehiculul A:</b>
+                            <br /> Bara față, capotă, aripă dreapta, radiator, roată dreapta, scut
+                        </p>
+                    </div>
+                </div>
+                <div style="width: 50%">
+                    <img height="100%" width="100%" />
+                </div>
+                <div class="yellow" style="width: 25%">
+                    <div class="squere">
+                        <p><b>10.Indicați punctul de impact inițial</b></p>
+                        <img height="190mm" width="100%" />
+                        <p>
+                            <b>11.Păgube vizibile la vehiculul A:</b>
+                            <br /> Bara față, capotă, aripă dreapta, radiator, roată dreapta, scut
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex; height: 10%;">
+                <div class="blue" style="width: 35%">
+                    <p><b>14.Observații:</b></p>
+                    <p>Text</p>
+                </div>
+                <div style="width: 30%">
+                    <p>15.Semnături conducători auto</p>
+                    <div style="display: flex; justify-content: space-between; margin: 0 2px 0 2px">
+                        <div style="text-align:left"><h1 style="margin: auto auto 0 auto">A</h1></div>
+                        <div style="text-align:right"><h1 style="margin: auto auto 0 auto">B</h1></div>
+                    </div>
+                </div>
+                <div class="yellow" style="width: 35%">
+                    <p><b>14.Observații:</b></p>
+                    <p>Text</p>
+                </div>
+            </div>
+        </div>
+        <div class="bottom margin">
+            <div style="display:flex">
+                <div style="width:30%; padding: 1px 1px 1px 1px">
+                    <p style="font-size: 8px">
+                        *În cazul unor vătămări corporale sau în cazul unor daune materiale
+                        altele decât la vehiculele A și B, indicați natura lor precum și
+                        identitatea, adresa și telefonul persoanelor prejudiciate (verso).
+                    </p>
+                </div>
+                <div style="width:40%; text-align:center">
+                    <small><b>Nu mai modificați nimic după semnarea și separarea exemplarelor</b></small>
+                </div>
+            </div>
+        </div>
+    </div>
+
